@@ -8,7 +8,17 @@ Personal portfolio website built with React, showcasing technical skills, projec
 npm install
 npm start        # Development server at http://localhost:3000
 npm run build    # Production build
-npm run deploy   # Deploy to GitHub Pages
+```
+
+## Deployment
+
+**Vercel** (Recommended - Automatic CI/CD)
+- Push to GitHub triggers automatic deployment
+- Visit [vercel.com](https://vercel.com) to set up
+
+**GitHub Pages** (Manual)
+```bash
+npm run deploy   # Manual deployment
 ```
 
 ## Tech Stack
