@@ -109,7 +109,7 @@ A professional portfolio website for Jason Ma, showcasing technical skills, proj
 ## 3. Project Structure
 
 ```
-My-Portfolio-Website/
+jason-ma-portfolio/
 ├── public/
 │   ├── index.html
 │   └── favicon.ico
@@ -590,7 +590,7 @@ type PortfoliosData = PortfolioProject[];
   description: "使用 React 建立的響應式個人作品集網站，整合 WordPress 部落格 API",
   image: null,
   technologies: ["React", "SCSS", "WordPress API", "React Router"],
-  githubUrl: "https://github.com/jasonma1127/My-Portfolio-Website",
+  githubUrl: "https://github.com/jasonma1127/jason-ma-portfolio",
   liveUrl: null,
   blogPostUrl: null,
   featured: true
@@ -1128,13 +1128,14 @@ npm run build
 
 **Environment Variables**:
 - `PUBLIC_URL`: Base URL for deployment
-- Current: `https://my-portfolios-website.herokuapp.com/`
 
 ---
 
 ### 13.2 Deployment Targets
 
-**Current**:
+**Recommended**:
+- Vercel (automatic CI/CD)
+- Netlify
 - GitHub Pages (configured via `gh-pages` package)
 
 **Commands**:
@@ -1143,11 +1144,9 @@ npm run predeploy  # Builds the project
 npm run deploy     # Deploys to gh-pages
 ```
 
-**Future Options**:
-- Vercel
-- Netlify
+**Additional Options**:
 - AWS S3 + CloudFront
-- Heroku (current homepage setting)
+- Firebase Hosting
 
 ---
 

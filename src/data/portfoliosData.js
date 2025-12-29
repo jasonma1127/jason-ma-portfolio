@@ -8,7 +8,7 @@ const portfoliosData = [
     description: "Responsive personal portfolio website built with React, integrated with WordPress blog API",
     image: null, // Add project screenshot path here
     technologies: ["React", "SCSS", "WordPress API", "React Router"],
-    githubUrl: "https://github.com/jasonma1127/My-Portfolio-Website",
+    githubUrl: "https://github.com/jasonma1127/jason-ma-portfolio",
     liveUrl: null, // Fill in after deployment
     blogPostUrl: null, // If there's a related blog post
     featured: true,
