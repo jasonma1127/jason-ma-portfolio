@@ -1,3 +1,7 @@
+// Import Inter font from Google Fonts
+@import url('https://fonts.googleapis.com/css2?family:Inter:wght@400;500;600;700&display=swap');
+
+// Responsive mixins
 @mixin pad {
   @media (max-width: 1024px) {
     @content;
@@ -9,6 +13,25 @@
     @content;
   }
 }
+
+// Design Tokens - 2025 Color Palette
+$dark-bg: #595d64;
+$light-bg: #f3f5f8;
+$accent-blue: #89acd2;
+$accent-green: #90d5b1;
+$text-light: #f3f5f8;
+$text-dark: #595d64;
+$text-muted: #d0d0d0;
+
+// Glassmorphism Variables
+$glass-bg-dark: rgba(89, 93, 100, 0.6);
+$glass-bg-light: rgba(243, 245, 248, 0.6);
+$glass-border: rgba(137, 172, 210, 0.18);
+$glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+$glass-shadow-hover: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+
+// Transition timing
+$transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 
 @import "./Styles/Components/navigationBar";
 @import "./Styles/Components/title";
@@ -24,15 +47,6 @@
 @import "./Styles/Components/portfoliosCard";
 @import "./Styles/Components/blogCard";
 
-// gray #595d64
-// white #f3f5f8
-// blue #89acd2
-// green #90d5b1
-// "@fortawesome/fontawesome-svg-core"
-// "@fortawesome/free-solid-svg-icons"
-// "@fortawesome/free-brands-svg-icons"
-// "@fortawesome/react-fontawesome"
-
 * {
   padding: 0;
   margin: 0;
@@ -40,9 +54,12 @@
 }
 
 body {
-  color: #f3f5f8;
-  font-family: sans-serif;
+  color: $text-light;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 1.2rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .App {

@@ -1,36 +1,45 @@
 .blog-page {
   .content-section {
-    padding: 2rem;
+    padding: 2.5rem;
 
     .blog-filter {
       display: flex;
       gap: 1rem;
       justify-content: center;
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
 
       button {
-        padding: 0.8rem 1.5rem;
-        border: 2px solid #89acd2;
-        background: transparent;
-        color: #f3f5f8;
-        border-radius: 5px;
+        padding: 0.9rem 1.8rem;
+        border: 1px solid rgba(137, 172, 210, 0.4);
+        background: rgba(137, 172, 210, 0.15);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        color: $text-light;
+        border-radius: 10px;
         cursor: pointer;
         font-size: 1rem;
-        transition: all 0.3s ease;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        transition: all 0.3s $transition-smooth;
+        box-shadow: 0 2px 8px rgba(137, 172, 210, 0.15);
 
         &:hover {
-          background: #89acd2;
+          background: rgba(137, 172, 210, 0.25);
+          border-color: rgba(137, 172, 210, 0.6);
           transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(137, 172, 210, 0.2);
         }
 
         &.active {
-          background: #89acd2;
+          background: rgba(137, 172, 210, 0.35);
+          border-color: rgba(137, 172, 210, 0.7);
         }
       }
 
       @include mobile {
         flex-direction: column;
         align-items: stretch;
+        gap: 0.8rem;
       }
     }
 
@@ -38,9 +47,10 @@
     .blog-error,
     .no-posts {
       text-align: center;
-      padding: 3rem;
-      font-size: 1.2rem;
-      color: #89acd2;
+      padding: 4rem 3rem;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: $accent-blue;
     }
 
     .blog-error {
@@ -50,11 +60,12 @@
     .blog-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 2rem;
+      gap: 2.5rem;
       margin-top: 2rem;
 
       @include mobile {
         grid-template-columns: 1fr;
+        gap: 2rem;
       }
     }
   }

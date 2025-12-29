@@ -3,14 +3,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid $glass-border;
+  box-shadow: $glass-shadow;
+  transition: all 0.3s $transition-smooth;
+
   .logo {
     margin-left: 3rem;
-    @include pad{
+    font-weight: 600;
+    @include pad {
       margin-left: 50%;
       transform: translate(-50%);
       font-size: 1.7rem;
     }
-    @include mobile{
+    @include mobile {
       font-size: 0.8rem;
     }
   }
@@ -24,12 +31,15 @@
         a {
           text-decoration: none;
           color: inherit;
+          font-weight: 500;
+          transition: color 0.3s $transition-smooth;
         }
         .active {
-          color: #90d5b1 !important;
+          color: $accent-green !important;
+          font-weight: 600;
         }
       }
-      @include pad{
+      @include pad {
         position: absolute;
         display: flex;
         flex-direction: column;
@@ -39,36 +49,40 @@
         padding: 5rem;
         width: 100%;
         height: 100%;
-        background-color: #89acd2;
+        background: rgba(137, 172, 210, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         font-size: 4rem;
-        transition: 0.5s;
+        transition: 0.5s $transition-smooth;
         z-index: 3;
-        &.active{
+        &.active {
           left: 50%;
           transform: translate(-50%);
-          transition: 0.5s;
+          transition: 0.5s $transition-smooth;
         }
       }
-      @include mobile{
+      @include mobile {
         font-size: 2.5rem;
         padding: 2rem;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
       }
     }
-    .nav-item-icons{
+    .nav-item-icons {
       display: none;
-      @include pad{
-        &.pad{
+      @include pad {
+        &.pad {
           display: block;
         }
-        &.mobile{
+        &.mobile {
           display: none;
         }
       }
-      @include mobile{
-        &.pad{
+      @include mobile {
+        &.pad {
           display: none;
         }
-        &.mobile{
+        &.mobile {
           display: block;
         }
       }
@@ -77,41 +91,51 @@
 }
 
 .navigation-bar.home {
-  background-color: #595d64;
+  background: $glass-bg-dark;
   h1 {
-    color: #f3f5f8 !important;
+    color: $text-light !important;
   }
   a {
-    color: #f3f5f8 !important;
+    color: $text-light !important;
   }
 }
 
 .navigation-bar.about {
-  background-color: #f3f5f8;
+  background: $glass-bg-light;
   h1 {
-    color: #595d64 !important;
+    color: $text-dark !important;
   }
   a {
-    color: #595d64 !important;
+    color: $text-dark !important;
   }
 }
 
 .navigation-bar.portfolios {
-  background-color: #595d64;
+  background: $glass-bg-dark;
   h1 {
-    color: #f3f5f8 !important;
+    color: $text-light !important;
   }
   a {
-    color: #f3f5f8 !important;
+    color: $text-light !important;
   }
 }
 
 .navigation-bar.contact {
-  background-color: #f3f5f8;
+  background: $glass-bg-light;
   h1 {
-    color: #595d64 !important;
+    color: $text-dark !important;
   }
   a {
-    color: #595d64 !important;
+    color: $text-dark !important;
+  }
+}
+
+.navigation-bar.blog {
+  background: $glass-bg-dark;
+  h1 {
+    color: $text-light !important;
+  }
+  a {
+    color: $text-light !important;
   }
 }

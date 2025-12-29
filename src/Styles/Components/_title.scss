@@ -1,17 +1,20 @@
 .title {
   text-transform: uppercase;
   font-size: 3rem;
+  font-weight: 600;
   position: relative;
-  letter-spacing: 3px;
+  letter-spacing: 1.5px;
   @include mobile {
     font-size: 2rem;
+    letter-spacing: 1px;
   }
   span {
     position: absolute;
     top: 15%;
     left: 0;
     font-size: 8rem;
-    opacity: 0.1;
+    font-weight: 700;
+    opacity: 0.07;
     @include mobile {
       font-size: 5rem;
     }
@@ -19,13 +22,29 @@
 }
 
 .title.about {
-  color: #f3f5f8;
+  color: $text-light;
+  span {
+    color: $text-light;
+  }
 }
 
 .title.portfolios {
-  color: #595d64;
+  color: $text-dark;
+  span {
+    color: $text-dark;
+  }
 }
 
 .title.contact {
-  color: #f3f5f8;
+  color: $text-light;
+  span {
+    color: $text-light;
+  }
+}
+
+.title.blog {
+  color: $text-dark;
+  span {
+    color: $text-dark;
+  }
 }
