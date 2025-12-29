@@ -9,7 +9,7 @@ const portfoliosData = [
     image: null, // Add project screenshot path here
     technologies: ["React", "SCSS", "WordPress API", "React Router"],
     githubUrl: "https://github.com/jasonma1127/jason-ma-portfolio",
-    liveUrl: null, // Fill in after deployment
+    liveUrl: "https://jason-ma-portfolio.vercel.app", // Production URL
     blogPostUrl: null, // If there's a related blog post
     featured: true,
   },
