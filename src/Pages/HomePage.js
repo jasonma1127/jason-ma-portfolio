@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
-//need to npm install "@fortawesome/free-brands-svg-icons"
+import { useState, useEffect } from "react";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faWordpress } from "@fortawesome/free-brands-svg-icons";
-//need to npm install "@fortawesome/react-fontawesome"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import jasonMain from "../image/jason_1.png";
 import jasonLeft from "../image/jason_2.png";
 import jasonRight from "../image/jason_3.png";
@@ -16,7 +14,7 @@ function HomePage() {
 
   useEffect(() => {
     setMovement("move");
-  });
+  }, []);
 
   return (
     <div className="home-page">

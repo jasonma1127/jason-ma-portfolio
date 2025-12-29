@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,9 +18,7 @@ function NavigationBar(props) {
           <li className="nav-item" onClick={clickHandler}>
             <NavLink
               to={process.env.PUBLIC_URL + "/"}
-              exact
-              // activeClassName="active"
-              // className={isActive => !isActive ? "test" : "abc"}
+              className={({ isActive }) => isActive ? "active" : ""}
             >
               Home
             </NavLink>
@@ -28,8 +26,7 @@ function NavigationBar(props) {
           <li className="nav-item" onClick={clickHandler}>
             <NavLink
               to={process.env.PUBLIC_URL + "/about"}
-              exact
-              activeClassName="active"
+              className={({ isActive }) => isActive ? "active" : ""}
             >
               About
             </NavLink>
@@ -37,17 +34,23 @@ function NavigationBar(props) {
           <li className="nav-item" onClick={clickHandler}>
             <NavLink
               to={process.env.PUBLIC_URL + "/portfolios"}
-              exact
-              activeClassName="active"
+              className={({ isActive }) => isActive ? "active" : ""}
             >
               Portfolios
             </NavLink>
           </li>
           <li className="nav-item" onClick={clickHandler}>
             <NavLink
+              to={process.env.PUBLIC_URL + "/blog"}
+              className={({ isActive }) => isActive ? "active" : ""}
+            >
+              Blog
+            </NavLink>
+          </li>
+          <li className="nav-item" onClick={clickHandler}>
+            <NavLink
               to={process.env.PUBLIC_URL + "/contact"}
-              exact
-              activeClassName="active"
+              className={({ isActive }) => isActive ? "active" : ""}
             >
               Contact
             </NavLink>

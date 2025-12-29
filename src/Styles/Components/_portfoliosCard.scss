@@ -1,23 +1,100 @@
 .portfolios-card {
-  width: 80%;
-  margin: 0 auto;
   background-color: #595d64;
   border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
-  @include pad {
-    margin-bottom: 3rem;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(137, 172, 210, 0.3);
   }
 
-  @include mobile {
-    margin-bottom: 2rem;
+  &.featured {
+    border: 2px solid #90d5b1;
+    box-shadow: 0 5px 20px rgba(144, 213, 177, 0.2);
+  }
+
+  .portfolios-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.1);
+    }
   }
 
   .portfolios-content {
-    padding: 1.2rem;
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 
     .portfolios-title {
       color: #89acd2;
       margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    .portfolios-description {
+      color: #d0d0d0;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .portfolios-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: auto;
+
+      .tech-tag {
+        background: #89acd2;
+        color: #fff;
+        padding: 0.4rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .portfolios-links {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid rgba(137, 172, 210, 0.2);
+    flex-wrap: wrap;
+
+    .portfolio-link {
+      padding: 0.6rem 1.2rem;
+      background: transparent;
+      border: 2px solid #90d5b1;
+      color: #f3f5f8;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      &:hover {
+        background: #90d5b1;
+        color: #595d64;
+        transform: translateY(-2px);
+      }
     }
   }
 
@@ -26,12 +103,23 @@
       padding: 1.5rem;
 
       .portfolios-title {
-        font-size: 3rem;
+        font-size: 2.5rem;
       }
 
-      p {
-        font-size: 2rem;
-        height: 10vh;
+      .portfolios-description {
+        font-size: 1.8rem;
+      }
+
+      .tech-tag {
+        font-size: 1.2rem;
+        padding: 0.6rem 1rem;
+      }
+    }
+
+    .portfolios-links {
+      .portfolio-link {
+        font-size: 1.5rem;
+        padding: 0.8rem 1.5rem;
       }
     }
   }
@@ -41,34 +129,24 @@
       padding: 1rem;
 
       .portfolios-title {
-        margin-bottom: 1rem;
-        font-size: 2rem;
+        font-size: 1.5rem;
       }
 
-      p {
-        font-size: 1.2rem;
+      .portfolios-description {
+        font-size: 1rem;
+      }
+
+      .tech-tag {
+        font-size: 0.75rem;
       }
     }
-  }
 
-  .portfolios-btn {
-    margin: 0 auto;
-    text-align: center;
+    .portfolios-links {
+      flex-direction: column;
 
-    button {
-      border-radius: 12px;
-      font-size: 1.5rem;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      background-color: #90d5b1;
-      color: #f3f5f8;
-
-      @include pad {
-        font-size: 2.5rem;
-      }
-
-      @include mobile {
-        font-size: 1.8rem;
+      .portfolio-link {
+        text-align: center;
+        justify-content: center;
       }
     }
   }

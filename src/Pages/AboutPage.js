@@ -1,4 +1,3 @@
-import React from "react";
 import AboutSection from "../Components/AboutSection";
 import SkillsSection from "../Components/SkillsSection";
 import Title from "../Components/Title";

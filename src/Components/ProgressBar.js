@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function ProgressBar(props) {
   const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {
     setPercentage(props.percentage);
-  });
+  }, [props.percentage]);
 
   return (
     <div className="progress-bar">
