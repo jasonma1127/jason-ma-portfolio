@@ -1,37 +1,15 @@
+// ============================================
+// PORTFOLIO WEBSITE - APPLE LIQUID GLASS DESIGN SYSTEM
+// ============================================
+
+// Import Design System (Modern @use syntax - MUST be first!)
+// Using 'as *' to make all variables globally available (maintains compatibility)
+@use "./Styles/design-tokens" as *;
+@use "./Styles/component-tokens" as *;
+@use "./Styles/mixins" as *;
+
 // Import Inter font from Google Fonts
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-// Responsive mixins
-@mixin pad {
-  @media (max-width: 1024px) {
-    @content;
-  }
-}
-
-@mixin mobile {
-  @media (max-width: 480px) {
-    @content;
-  }
-}
-
-// Design Tokens - 2025 Color Palette
-$dark-bg: #595d64;
-$light-bg: #f3f5f8;
-$accent-blue: #89acd2;
-$accent-green: #90d5b1;
-$text-light: #f3f5f8;
-$text-dark: #595d64;
-$text-muted: #d0d0d0;
-
-// Glassmorphism Variables
-$glass-bg-dark: rgba(89, 93, 100, 0.6);
-$glass-bg-light: rgba(243, 245, 248, 0.6);
-$glass-border: rgba(137, 172, 210, 0.18);
-$glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-$glass-shadow-hover: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-
-// Transition timing
-$transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 
 @import "./Styles/Components/navigationBar";
 @import "./Styles/Components/title";
@@ -53,20 +31,50 @@ $transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  // Set unified background for entire app with gradient overlay
+  background:
+    linear-gradient(135deg, rgba(137, 172, 210, 0.15) 0%, transparent 50%),
+    linear-gradient(225deg, rgba(144, 213, 177, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(137, 172, 210, 0.2), transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(144, 213, 177, 0.18), transparent 45%),
+    $surface-secondary;
+  background-attachment: fixed;
+}
+
 body {
-  color: $text-light;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 1.2rem;
-  line-height: 1.6;
+  color: $text-primary-dark;
+  font-family: $font-primary;
+  font-size: $text-base;
+  line-height: $leading-normal;
+  font-weight: $font-normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .App {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
   .nav-bar {
+    position: sticky;
+    top: 0;
     height: 10vh;
+    min-height: 64px;
+    flex-shrink: 0;
+    z-index: $z-sticky;
+
+    // Mobile: normal scroll (save screen space)
+    @include mobile {
+      position: relative;
+    }
   }
   .main-content {
-    height: 90vh;
+    flex: 1;
+    background: transparent;
   }
 }
