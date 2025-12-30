@@ -1,6 +1,6 @@
 # Jason Ma Portfolio Website - Technical Specification
 
-**Version:** 1.2.0
+**Version:** 1.2.1
 **Last Updated:** 2025-12-30
 **Status:** Active Development
 **Purpose:** Single Source of Truth for Specification-Driven Development (SDD)
@@ -28,6 +28,8 @@
 
 ### 1.1 Purpose
 A professional portfolio website for Jason Ma, showcasing technical skills, projects, blog posts, and contact information for job seeking and professional networking.
+
+**Production URL**: https://jason-ma-portfolio.vercel.app
 
 ### 1.2 Target Audience
 - Potential employers
@@ -276,8 +278,7 @@ This ensures animation plays on every visit, not just page refresh
 │  - Progress bars            │
 ├─────────────────────────────┤
 │  ContactSection             │
-│  - Email, LinkedIn          │
-│  - GitHub, Phone            │
+│  - Email, LinkedIn, GitHub  │
 └─────────────────────────────┘
 ```
 
@@ -1580,6 +1581,7 @@ npm run deploy     # Deploys to gh-pages
 
 | Version | Date       | Author    | Changes                                             |
 |---------|------------|-----------|-----------------------------------------------------|
+| 1.2.1   | 2025-12-30 | Jason Ma  | Privacy update: Removed phone number from ContactSection (3 methods instead of 4), added 404 NotFoundPage, ErrorBoundary component, comprehensive SEO meta tags, favicon fixes for Vercel deployment, Google Analytics placeholder |
 | 1.2.0   | 2025-12-30 | Jason Ma  | Major update: Added GitHub API integration, removed Contact page, added GitHubStats and ContactSection components, updated AboutPage structure, added hash routing for contact section, updated all component specifications |
 | 1.1.0   | 2025-12-30 | Jason Ma  | Added design tokens architecture, updated styling system, documented Home page animation fixes |
 | 1.0.0   | 2025-12-28 | Jason Ma  | Initial specification document                      |
