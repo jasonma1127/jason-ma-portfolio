@@ -1,177 +1,208 @@
-.home-page {
-  background: radial-gradient(circle at top right, rgba(137, 172, 210, 0.08), $light-bg 70%);
-  height: 100%;
+// ============================================
+// HOME PAGE - Liquid Glass Design (Optimized)
+// ============================================
 
+.home-page {
+  min-height: 100%;
+  // No background needed - inherits from body
+
+  // ----------------
+  // PRESERVED: Image Animation Effect
+  // ----------------
   .home-img {
-    margin: 0 auto;
-    height: 50%;
-    width: 40%;
+    position: relative;
+    margin: $spacing-8 auto 0;
+    height: $home-img-height;
+    width: $home-img-container-width;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     @include mobile {
-      height: 35.5%;
+      height: $home-img-height-mobile;
     }
+
     img {
-      max-width: 100%;
-      max-height: 100%;
-      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
+      position: absolute;
+      object-fit: contain;
     }
+
     .jasonLeft {
-      position: absolute;
-      height: 43%;
-      top: 12%;
+      height: $home-img-height;
+      top: 50%;
       right: 50%;
-      transform: translate(50%);
+      transform: translate(50%, -50%);
       z-index: 1;
+
       @include mobile {
-        height: 30%;
+        height: $home-img-height-mobile;
       }
+
       &.move {
-        transition: 1s all ease;
-        -webkit-transform: translate(5%, 0);
-        -moz-transform: translate(5%, 0);
-        transform: translate(5%, 0);
-        transition-delay: 1s;
+        transition: $home-animation-duration all $home-animation-timing;
+        transform: translate($home-img-move-distance, -50%);
+        transition-delay: $home-animation-delay;
       }
     }
+
     .jasonMain {
-      position: absolute;
-      height: 45%;
-      top: 10%;
+      height: $home-img-height;
+      top: 50%;
       left: 50%;
-      transform: translate(-50%);
+      transform: translate(-50%, -50%);
       z-index: 2;
       filter: brightness(10%);
+
       @include mobile {
-        height: 32%;
+        height: $home-img-height-mobile;
       }
+
       &.move {
-        transition: 1s all ease;
+        transition: $home-animation-duration all $home-animation-timing;
         filter: brightness(100%) drop-shadow(0 8px 20px rgba(89, 93, 100, 0.15));
       }
     }
+
     .jasonRight {
-      position: absolute;
-      height: 43%;
-      top: 12%;
+      height: $home-img-height;
+      top: 50%;
       left: 50%;
-      transform: translate(-50%);
+      transform: translate(-50%, -50%);
       z-index: 1;
+
       @include mobile {
-        height: 30%;
+        height: $home-img-height-mobile;
       }
+
       &.move {
-        transition: 1s all ease;
-        -webkit-transform: translate(-5%, 0);
-        -moz-transform: translate(-5%, 0);
-        transform: translate(-5%, 0);
-        transition-delay: 1s;
+        transition: $home-animation-duration all $home-animation-timing;
+        transform: translate(-$home-img-move-distance, -50%);
+        transition-delay: $home-animation-delay;
       }
     }
   }
 
+  // ----------------
+  // Home Bar - Rebuilt with tokens
+  // ----------------
   .home-bar {
-    padding: 0.6rem;
-    background: $glass-bg-dark;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid $glass-border;
+    padding: $spacing-1;
+    @include glass-surface($glass-bg-dark, $glass-border-dark);
     opacity: 0;
     width: 0%;
     margin: 0 auto;
-    border-radius: 16px;
-    box-shadow: $glass-shadow;
+
     &.move {
-      transition: 1s all ease;
+      transition: $home-animation-duration all $home-animation-timing;
       opacity: 1;
       width: 35%;
-      transition-delay: 1s;
+      transition-delay: $home-animation-delay;
+
       @include pad {
         width: 70%;
       }
+
       @include mobile {
         width: 80%;
       }
     }
   }
 
+  // ----------------
+  // Home Title - Rebuilt with typography tokens
+  // ----------------
   .home-title {
-    margin-top: 0.5rem;
+    margin-top: $spacing-2;
     text-align: center;
-    color: $accent-blue;
-    font-size: 5rem;
-    font-weight: 700;
+    color: $interactive-primary;
+    font-size: $text-6xl;
+    font-weight: $font-bold;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: $home-title-letter-spacing;
     opacity: 0;
-    text-shadow: 0 4px 12px rgba(137, 172, 210, 0.15);
+    text-shadow: 0 4px 12px rgba(137, 172, 210, 0.2);
+
     @include pad {
-      margin-top: 1rem;
-      font-size: 6rem;
+      margin-top: $spacing-3;
+      font-size: $text-6xl;
     }
+
     @include mobile {
-      font-size: 3rem;
-      letter-spacing: 2px;
+      font-size: $text-4xl;
+      letter-spacing: $home-title-letter-spacing-mobile;
+      margin-top: $spacing-2;
     }
+
     p {
-      font-size: 1rem;
-      font-weight: 500;
-      color: $text-dark;
+      font-size: $text-base;
+      font-weight: $font-medium;
+      color: $text-secondary-dark;
       letter-spacing: 1px;
+
       @include pad {
-        font-size: 1.5rem;
+        font-size: $text-xl;
       }
+
       @include mobile {
-        font-size: 0.5rem;
+        font-size: $text-xs;
       }
     }
+
     &.move {
       opacity: 1;
-      transition: 1s all ease;
-      transition-delay: 1s;
+      transition: $home-animation-duration all $home-animation-timing;
+      transition-delay: $home-animation-delay;
     }
   }
 
+  // ----------------
+  // Contact Button - Rebuilt with button tokens
+  // ----------------
   .home-contact-btn {
-    padding: 1rem;
+    padding: $spacing-2;
     text-align: center;
     opacity: 0;
+
     &.move {
       opacity: 1;
-      transition: 1s all ease;
-      transition-delay: 1s;
+      transition: $home-animation-duration all $home-animation-timing;
+      transition-delay: $home-animation-delay;
     }
+
     button {
-      padding: 0.8rem 2.5rem;
-      font-size: 1.8rem;
-      font-weight: 600;
-      font-family: 'Inter', sans-serif;
+      padding: $spacing-2 $spacing-5;
+      font-size: $text-2xl;
+      font-weight: $font-semibold;
+      font-family: $font-primary;
       min-width: 240px;
-      background: rgba(144, 213, 177, 0.15);
+      background: rgba(144, 213, 177, 0.2);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-radius: 14px;
-      border: 1px solid rgba(144, 213, 177, 0.4);
-      color: $text-dark;
+      border-radius: $button-radius;
+      border: 1px solid rgba(144, 213, 177, 0.5);
+      color: $text-primary-dark;
       cursor: pointer;
-      transition: all 0.4s $transition-smooth;
-      box-shadow: 0 4px 16px rgba(144, 213, 177, 0.1);
+      transition: all $transition-base;
+      box-shadow: $button-shadow;
 
       @include pad {
-        margin-top: 1rem;
+        margin-top: $spacing-2;
         min-width: 200px;
-        padding: 1.2rem 3rem;
-        font-size: 2rem;
+        padding: $spacing-3 $spacing-6;
+        font-size: $text-3xl;
       }
+
       @include mobile {
         min-width: 180px;
-        padding: 0.9rem 2rem;
-        font-size: 1.3rem;
+        padding: $spacing-2 $spacing-4;
+        font-size: $text-xl;
       }
+
       &:hover {
-        background: rgba(144, 213, 177, 0.3);
-        border-color: rgba(144, 213, 177, 0.6);
+        background: rgba(144, 213, 177, 0.35);
+        border-color: rgba(144, 213, 177, 0.7);
         transform: translateY(-3px);
-        box-shadow: 0 8px 24px rgba(144, 213, 177, 0.25);
-        color: darken($text-dark, 10%);
+        box-shadow: $button-shadow-hover;
       }
 
       &:active {
@@ -180,65 +211,40 @@
     }
   }
 
+  // ----------------
+  // Social Icons - Rebuilt with tokens & mixins
+  // ----------------
   .icons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem 0;
-    gap: 0.5rem;
+    @include flex-center;
+    padding: $spacing-3 0 $spacing-1 0;
+    gap: $spacing-1;
 
     .icon-holder {
-      margin: 0 0.8rem;
+      margin: 0 $spacing-2;
+
       .icon {
-        font-size: 2.2rem;
-        color: $text-dark;
+        font-size: $text-3xl;
+        color: $text-secondary-dark;
         opacity: 0;
-        transition: all 0.3s $transition-smooth;
+        transition: all $transition-base;
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
       }
+
+      // Using mixin for cleaner code
       .gt.move {
-        opacity: 1;
-        transition: 1s all ease;
-        transition-delay: 1s;
-        &:hover {
-          color: #6e5494;
-          transform: translateY(-3px) scale(1.1);
-          filter: drop-shadow(0 4px 8px rgba(110, 84, 148, 0.3));
-          transition-delay: 0s;
-        }
+        @include home-icon-animation($brand-github);
       }
+
       .fb.move {
-        opacity: 1;
-        transition: 1s all ease;
-        transition-delay: 1s;
-        &:hover {
-          color: #4267b2;
-          transform: translateY(-3px) scale(1.1);
-          filter: drop-shadow(0 4px 8px rgba(66, 103, 178, 0.3));
-          transition-delay: 0s;
-        }
+        @include home-icon-animation($brand-facebook);
       }
+
       .wp.move {
-        opacity: 1;
-        transition: 1s all ease;
-        transition-delay: 1s;
-        &:hover {
-          color: #21759b;
-          transform: translateY(-3px) scale(1.1);
-          filter: drop-shadow(0 4px 8px rgba(33, 117, 155, 0.3));
-          transition-delay: 0s;
-        }
+        @include home-icon-animation($brand-wordpress);
       }
+
       .yt.move {
-        opacity: 1;
-        transition: 1s all ease;
-        transition-delay: 1s;
-        &:hover {
-          color: #ff0000;
-          transform: translateY(-3px) scale(1.1);
-          filter: drop-shadow(0 4px 8px rgba(255, 0, 0, 0.3));
-          transition-delay: 0s;
-        }
+        @include home-icon-animation($brand-youtube);
       }
     }
   }

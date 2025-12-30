@@ -13,7 +13,13 @@ function HomePage() {
   const [movement, setMovement] = useState("");
 
   useEffect(() => {
-    setMovement("move");
+    // 每次進入頁面時重置動畫
+    setMovement("");
+    const timer = setTimeout(() => {
+      setMovement("move");
+    }, 50);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
