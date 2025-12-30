@@ -5,7 +5,6 @@ import HomePage from "./Pages/HomePage";
 import AboutPage from "./Pages/AboutPage";
 import PortfoliosPage from "./Pages/PortfoliosPage";
 import BlogPage from "./Pages/BlogPage";
-import ContactPage from "./Pages/ContactPage";
 
 function App() {
   return (
@@ -48,16 +47,6 @@ function App() {
             </div>
             <div className="main-content">
               <BlogPage />
-            </div>
-          </>
-        } />
-        <Route path={process.env.PUBLIC_URL + "/contact"} element={
-          <>
-            <div className="nav-bar">
-              <NavigationBar page="contact"/>
-            </div>
-            <div className="main-content">
-              <ContactPage />
             </div>
           </>
         } />

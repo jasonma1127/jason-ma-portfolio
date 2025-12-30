@@ -47,14 +47,6 @@ function NavigationBar(props) {
               Blog
             </NavLink>
           </li>
-          <li className="nav-item" onClick={clickHandler}>
-            <NavLink
-              to={process.env.PUBLIC_URL + "/contact"}
-              className={({ isActive }) => isActive ? "active" : ""}
-            >
-              Contact
-            </NavLink>
-          </li>
         </ul>
         <span className="nav-item-icons pad" onClick={clickHandler}>
           <FontAwesomeIcon icon={click? faTimes : faBars} className="fa-3x"/>

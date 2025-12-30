@@ -165,21 +165,6 @@
   }
 }
 
-// Contact - 深色頁面
-.navigation-bar.contact {
-  @include glass-nav;
-  background: $nav-bg-dark;
-  border-bottom: 1px solid $border-dark;
-
-  h1 {
-    color: $text-primary-dark !important;
-  }
-
-  a {
-    color: $text-primary-dark !important;
-  }
-}
-
 // Blog - 深色頁面
 .navigation-bar.blog {
   @include glass-nav;
