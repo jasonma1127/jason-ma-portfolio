@@ -1,0 +1,171 @@
+// ============================================
+// DESIGN TOKENS - Apple Liquid Glass System
+// ============================================
+
+// ----------------
+// Primitive Tokens (Base Colors - Never use directly in components)
+// ----------------
+$primitive-blue-100: #e3f2fd;
+$primitive-blue-200: #bbdefb;
+$primitive-blue-400: #89acd2;
+$primitive-blue-600: #5c8bb5;
+$primitive-blue-800: #37526b;
+
+$primitive-green-100: #e8f5e9;
+$primitive-green-200: #c8e6c9;
+$primitive-green-400: #90d5b1;
+$primitive-green-600: #5cb57a;
+$primitive-green-800: #2e7d4e;
+
+$primitive-gray-50: #fafafa;
+$primitive-gray-100: #f3f5f8;
+$primitive-gray-200: #e8eaed;
+$primitive-gray-400: #9aa0a6;
+$primitive-gray-600: #5f6368;
+$primitive-gray-700: #595d64;
+$primitive-gray-800: #3c4043;
+$primitive-gray-900: #202124;
+
+$primitive-white: #ffffff;
+$primitive-black: #000000;
+
+// ----------------
+// Semantic Tokens (Purpose-based)
+// ----------------
+
+// Surface Colors
+$surface-primary: $primitive-gray-100;        // Light pages background
+$surface-secondary: $primitive-gray-700;      // Dark pages background
+$surface-elevated: $primitive-white;          // Cards, modals
+$surface-overlay: rgba(0, 0, 0, 0.4);         // Modal backdrop
+
+// Text Colors
+$text-primary-light: $primitive-gray-900;     // Primary text on light bg
+$text-secondary-light: $primitive-gray-600;   // Secondary text on light bg
+$text-tertiary-light: $primitive-gray-400;    // Tertiary text on light bg
+
+$text-primary-dark: $primitive-white;         // Primary text on dark bg
+$text-secondary-dark: $primitive-gray-200;    // Secondary text on dark bg
+$text-tertiary-dark: $primitive-gray-400;     // Tertiary text on dark bg
+
+// Interactive Colors
+$interactive-primary: $primitive-blue-400;
+$interactive-primary-hover: $primitive-blue-600;
+$interactive-secondary: $primitive-green-400;
+$interactive-secondary-hover: $primitive-green-600;
+
+// Border Colors
+$border-light: rgba(0, 0, 0, 0.12);
+$border-dark: rgba(255, 255, 255, 0.12);
+$border-focus: $interactive-primary;
+
+// Brand Colors (Social Media)
+$brand-github: #6e5494;
+$brand-facebook: #4267b2;
+$brand-wordpress: #21759b;
+$brand-youtube: #ff0000;
+
+// ----------------
+// Liquid Glass Materials
+// ----------------
+
+// Glass Backgrounds (Higher opacity for better contrast per Apple's Beta 3 update)
+$glass-bg-light: rgba(255, 255, 255, 0.72);
+$glass-bg-dark: rgba(60, 64, 67, 0.72);
+$glass-bg-colored: rgba(137, 172, 210, 0.18);
+
+// Glass Effects
+$glass-blur: saturate(180%) blur(20px);
+$glass-border-light: rgba(255, 255, 255, 0.3);
+$glass-border-dark: rgba(255, 255, 255, 0.15);
+
+// Glass Shadows
+$glass-shadow-sm: 0 2px 16px rgba(0, 0, 0, 0.08);
+$glass-shadow-md: 0 8px 32px rgba(0, 0, 0, 0.12);
+$glass-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.16);
+$glass-inset-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+// ----------------
+// Typography Scale (Based on Apple HIG + Inter font)
+// ----------------
+
+// Font Families
+$font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+
+// Font Sizes (Modular scale: 1.25 ratio)
+$text-xs: 0.75rem;      // 12px
+$text-sm: 0.875rem;     // 14px
+$text-base: 1rem;       // 16px
+$text-lg: 1.125rem;     // 18px
+$text-xl: 1.25rem;      // 20px
+$text-2xl: 1.5rem;      // 24px
+$text-3xl: 1.875rem;    // 30px
+$text-4xl: 2.25rem;     // 36px
+$text-5xl: 3rem;        // 48px
+$text-6xl: 3.75rem;     // 60px
+
+// Font Weights
+$font-normal: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+
+// Line Heights
+$leading-tight: 1.25;
+$leading-normal: 1.5;
+$leading-relaxed: 1.625;
+$leading-loose: 2;
+
+// ----------------
+// Spacing Scale (8pt Grid System)
+// ----------------
+
+$spacing-1: 0.5rem;     // 8px
+$spacing-2: 1rem;       // 16px
+$spacing-3: 1.5rem;     // 24px
+$spacing-4: 2rem;       // 32px
+$spacing-5: 2.5rem;     // 40px
+$spacing-6: 3rem;       // 48px
+$spacing-8: 4rem;       // 64px
+$spacing-10: 5rem;      // 80px
+$spacing-12: 6rem;      // 96px
+$spacing-16: 8rem;      // 128px
+
+// ----------------
+// Border Radius
+// ----------------
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+$radius-full: 9999px;
+
+// ----------------
+// Transitions
+// ----------------
+
+$transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+// ----------------
+// Breakpoints
+// ----------------
+
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-wide: 1280px;
+
+// ----------------
+// Z-Index Scale
+// ----------------
+
+$z-base: 0;
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-overlay: 1030;
+$z-modal: 1040;
+$z-popover: 1050;
+$z-tooltip: 1060;

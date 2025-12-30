@@ -1,0 +1,113 @@
+// ============================================
+// COMPONENT TOKENS
+// ============================================
+// Component-specific design tokens built on top of design-tokens.scss
+
+@use 'design-tokens' as *;
+
+// ----------------
+// Navigation
+// ----------------
+
+$nav-height: 64px;
+$nav-bg-light: $glass-bg-light;
+$nav-bg-dark: $glass-bg-dark;
+$nav-text-light: $text-primary-light;
+$nav-text-dark: $text-primary-dark;
+$nav-shadow: $glass-shadow-sm;
+$nav-border-light: $border-light;
+$nav-border-dark: $border-dark;
+$nav-padding-x: $spacing-6;
+$nav-padding-y: $spacing-2;
+
+// ----------------
+// Cards
+// ----------------
+
+$card-bg-light: $glass-bg-light;
+$card-bg-dark: $glass-bg-dark;
+$card-border-light: $glass-border-light;
+$card-border-dark: $glass-border-dark;
+$card-shadow: $glass-shadow-md;
+$card-shadow-hover: $glass-shadow-lg;
+$card-radius: $radius-lg;
+$card-padding: $spacing-4;
+$card-gap: $spacing-3;
+
+// ----------------
+// Buttons
+// ----------------
+
+$button-primary-bg: $interactive-primary;
+$button-primary-hover: $interactive-primary-hover;
+$button-primary-text: $text-primary-dark;
+$button-secondary-bg: $interactive-secondary;
+$button-secondary-hover: $interactive-secondary-hover;
+$button-secondary-text: $text-primary-dark;
+$button-height: 44px;                    // Apple HIG minimum touch target
+$button-padding-x: $spacing-4;
+$button-padding-y: $spacing-2;
+$button-radius: $radius-md;
+$button-shadow: $glass-shadow-sm;
+$button-shadow-hover: $glass-shadow-md;
+
+// ----------------
+// Forms
+// ----------------
+
+$input-bg-light: rgba(255, 255, 255, 0.08);
+$input-bg-dark: rgba(255, 255, 255, 0.12);
+$input-border-light: $border-light;
+$input-border-dark: $border-dark;
+$input-border-focus: $border-focus;
+$input-text-light: $text-primary-light;
+$input-text-dark: $text-primary-dark;
+$input-placeholder-light: rgba(0, 0, 0, 0.4);
+$input-placeholder-dark: rgba(255, 255, 255, 0.4);
+$input-radius: $radius-md;
+$input-padding: $spacing-2;
+$input-shadow-focus: 0 0 0 3px rgba(137, 172, 210, 0.1);
+
+// ----------------
+// Status Messages
+// ----------------
+
+$status-success-bg: rgba(144, 213, 177, 0.15);
+$status-success-border: rgba(144, 213, 177, 0.5);
+$status-success-text: $interactive-secondary;
+$status-error-bg: rgba(255, 107, 107, 0.15);
+$status-error-border: rgba(255, 107, 107, 0.5);
+$status-error-text: #ff6b6b;
+$status-radius: $radius-md;
+$status-padding: $spacing-3;
+
+// ----------------
+// Page Sections
+// ----------------
+
+$section-padding: $spacing-5;
+$section-padding-mobile: $spacing-3;
+$section-max-width: 1200px;
+$section-gap: $spacing-6;
+
+// ----------------
+// Grid Systems
+// ----------------
+
+$grid-gap: $spacing-5;
+$grid-gap-mobile: $spacing-4;
+$grid-min-column-width: 350px;
+
+// ----------------
+// Home Page Animation
+// ----------------
+
+$home-img-container-width: 40%;
+$home-img-height: 40vh;
+$home-img-height-mobile: 30vh;
+$home-img-move-distance: 5%;
+$home-title-letter-spacing: 4px;
+$home-title-letter-spacing-mobile: 2px;
+$home-animation-duration: 1s;
+$home-animation-delay: 1s;
+$home-animation-timing: ease;

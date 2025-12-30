@@ -1,0 +1,276 @@
+// ============================================
+// MIXINS
+// ============================================
+
+@use 'design-tokens' as *;
+@use 'component-tokens' as *;
+
+// ----------------
+// Responsive Breakpoints
+// ----------------
+
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin pad {
+  @media (max-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin wide {
+  @media (min-width: $breakpoint-wide) {
+    @content;
+  }
+}
+
+// ----------------
+// Liquid Glass Effects
+// ----------------
+
+@mixin glass-surface($bg-color: $glass-bg-light, $border-color: $glass-border-light) {
+  background: $bg-color;
+  backdrop-filter: $glass-blur;
+  -webkit-backdrop-filter: $glass-blur;
+  border: 1px solid $border-color;
+  box-shadow: $glass-shadow-md, $glass-inset-highlight;
+}
+
+@mixin glass-card($bg-color: $glass-bg-light) {
+  @include glass-surface($bg-color, $glass-border-light);
+  border-radius: $card-radius;
+  padding: $card-padding;
+  transition: all $transition-base;
+
+  &:hover {
+    box-shadow: $glass-shadow-lg, $glass-inset-highlight;
+    transform: translateY(-2px);
+  }
+}
+
+@mixin glass-nav {
+  background: $glass-bg-light;
+  backdrop-filter: $glass-blur;
+  -webkit-backdrop-filter: $glass-blur;
+  border-bottom: 1px solid $border-light;
+  box-shadow: $glass-shadow-sm;
+}
+
+// ----------------
+// Typography
+// ----------------
+
+@mixin heading-1 {
+  font-size: $text-6xl;
+  font-weight: $font-bold;
+  line-height: $leading-tight;
+
+  @include pad {
+    font-size: $text-5xl;
+  }
+
+  @include mobile {
+    font-size: $text-4xl;
+  }
+}
+
+@mixin heading-2 {
+  font-size: $text-5xl;
+  font-weight: $font-bold;
+  line-height: $leading-tight;
+
+  @include pad {
+    font-size: $text-4xl;
+  }
+
+  @include mobile {
+    font-size: $text-3xl;
+  }
+}
+
+@mixin heading-3 {
+  font-size: $text-4xl;
+  font-weight: $font-semibold;
+  line-height: $leading-tight;
+
+  @include pad {
+    font-size: $text-3xl;
+  }
+
+  @include mobile {
+    font-size: $text-2xl;
+  }
+}
+
+@mixin heading-4 {
+  font-size: $text-3xl;
+  font-weight: $font-semibold;
+  line-height: $leading-normal;
+
+  @include pad {
+    font-size: $text-2xl;
+  }
+
+  @include mobile {
+    font-size: $text-xl;
+  }
+}
+
+@mixin body-large {
+  font-size: $text-lg;
+  font-weight: $font-normal;
+  line-height: $leading-relaxed;
+
+  @include mobile {
+    font-size: $text-base;
+  }
+}
+
+@mixin body-base {
+  font-size: $text-base;
+  font-weight: $font-normal;
+  line-height: $leading-normal;
+
+  @include mobile {
+    font-size: $text-sm;
+  }
+}
+
+@mixin body-small {
+  font-size: $text-sm;
+  font-weight: $font-normal;
+  line-height: $leading-normal;
+}
+
+// ----------------
+// Layout
+// ----------------
+
+@mixin container {
+  max-width: $section-max-width;
+  margin: 0 auto;
+  padding: 0 $section-padding;
+
+  @include mobile {
+    padding: 0 $section-padding-mobile;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin grid-auto-fit($min-width: $grid-min-column-width) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+  gap: $grid-gap;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $grid-gap-mobile;
+  }
+}
+
+// ----------------
+// Interactions
+// ----------------
+
+@mixin hover-lift {
+  transition: all $transition-base;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $glass-shadow-lg;
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+
+@mixin focus-ring {
+  &:focus {
+    outline: none;
+    border-color: $border-focus;
+    box-shadow: 0 0 0 3px rgba(137, 172, 210, 0.1);
+  }
+}
+
+@mixin button-reset {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+// ----------------
+// Utilities
+// ----------------
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin line-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// ----------------
+// Home Page Specific
+// ----------------
+
+@mixin home-icon-animation($brand-color) {
+  opacity: 1;
+  transition: $home-animation-duration all $home-animation-timing;
+  transition-delay: $home-animation-delay;
+
+  &:hover {
+    color: $brand-color;
+    transform: translateY(-3px) scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba($brand-color, 0.3));
+    transition-delay: 0s;
+  }
+}
