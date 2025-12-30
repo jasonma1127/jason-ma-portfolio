@@ -1,6 +1,6 @@
 # Jason Ma Portfolio Website - Technical Specification
 
-**Version:** 1.1.0
+**Version:** 1.2.0
 **Last Updated:** 2025-12-30
 **Status:** Active Development
 **Purpose:** Single Source of Truth for Specification-Driven Development (SDD)
@@ -37,10 +37,9 @@ A professional portfolio website for Jason Ma, showcasing technical skills, proj
 
 ### 1.3 Key Features
 - **Home Page**: Introduction with animated elements and social media links
-- **About Page**: Personal information, education, and technical skills visualization
+- **About Page**: Personal information, GitHub statistics, dynamic language skills, and contact section
 - **Portfolios Page**: Display of side projects with filtering capabilities
 - **Blog Page**: Integration with WordPress blog (https://jasonmablog.wordpress.com)
-- **Contact Page**: Contact form and social media links
 
 ### 1.4 Design Philosophy
 - Professional and clean aesthetic
@@ -117,6 +116,8 @@ jason-ma-portfolio/
 │   ├── Components/
 │   │   ├── AboutSection.js
 │   │   ├── BlogCard.js
+│   │   ├── ContactSection.js
+│   │   ├── GitHubStats.js
 │   │   ├── NavigationBar.js
 │   │   ├── PortfoliosCard.js
 │   │   ├── ProgressBar.js
@@ -125,13 +126,17 @@ jason-ma-portfolio/
 │   ├── Pages/
 │   │   ├── AboutPage.js
 │   │   ├── BlogPage.js
-│   │   ├── ContactPage.js
 │   │   ├── HomePage.js
 │   │   └── PortfoliosPage.js
 │   ├── Styles/
+│   │   ├── _component-tokens.scss
+│   │   ├── _design-tokens.scss
+│   │   ├── _mixins.scss
 │   │   ├── Components/
 │   │   │   ├── _aboutSection.scss
 │   │   │   ├── _blogCard.scss
+│   │   │   ├── _contactSection.scss
+│   │   │   ├── _githubStats.scss
 │   │   │   ├── _navigationBar.scss
 │   │   │   ├── _portfoliosCard.scss
 │   │   │   ├── _progressBar.scss
@@ -140,12 +145,13 @@ jason-ma-portfolio/
 │   │   └── Pages/
 │   │       ├── _aboutPage.scss
 │   │       ├── _blogPage.scss
-│   │       ├── _contactPage.scss
 │   │       ├── _homePage.scss
 │   │       ├── _pageLayout.scss
 │   │       └── _portfoliosPage.scss
 │   ├── data/
 │   │   └── portfoliosData.js
+│   ├── services/
+│   │   └── githubApi.js
 │   ├── image/
 │   │   ├── jason_1.png
 │   │   ├── jason_2.png
@@ -177,15 +183,19 @@ jason-ma-portfolio/
   <Route path="/about" element={<Layout><AboutPage /></Layout>} />
   <Route path="/portfolios" element={<Layout><PortfoliosPage /></Layout>} />
   <Route path="/blog" element={<Layout><BlogPage /></Layout>} />
-  <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
 </Routes>
 ```
 
+**Note**: Contact page has been removed. Contact functionality is now integrated into the About page via the ContactSection component.
+
 ### 4.3 Data Flow
 1. **Static Data**: `src/data/portfoliosData.js` for portfolio projects
-2. **External API**: WordPress REST API for blog posts
-3. **Props**: Parent to child component communication
-4. **Local State**: Component-level state management
+2. **External APIs**:
+   - WordPress REST API for blog posts
+   - GitHub REST API for user statistics and language data
+3. **Caching**: localStorage with 24-hour TTL for GitHub API data
+4. **Props**: Parent to child component communication
+5. **Local State**: Component-level state management
 
 ---
 
@@ -238,30 +248,47 @@ This ensures animation plays on every visit, not just page refresh
 
 ### 5.2 AboutPage (`src/Pages/AboutPage.js`)
 
-**Purpose**: Display personal information and technical skills
+**Purpose**: Display personal information, GitHub statistics, dynamic skills, and contact methods
 
 **Components Used**:
 - `Title` (title="about", span="about")
 - `AboutSection`
+- `GitHubStats`
 - `SkillsSection`
+- `ContactSection`
 
 **Layout**:
 ```
-┌─────────────────────┐
-│   Title: ABOUT      │
-├─────────────────────┤
-│  AboutSection       │
-│  - Name, Age        │
-│  - Email            │
-│  - Education        │
-│  - Download CV      │
-├─────────────────────┤
-│  SkillsSection      │
-│  - Progress Bars    │
-└─────────────────────┘
+┌─────────────────────────────┐
+│   Title: ABOUT              │
+├─────────────────────────────┤
+│  AboutSection               │
+│  - Professional bio         │
+│  - Info cards (6 items)     │
+│  - LinkedIn resume link     │
+├─────────────────────────────┤
+│  GitHubStats                │
+│  - Repos, Stars, Forks      │
+│  - Followers                │
+├─────────────────────────────┤
+│  SkillsSection              │
+│  - Dynamic language stats   │
+│  - Progress bars            │
+├─────────────────────────────┤
+│  ContactSection             │
+│  - Email, LinkedIn          │
+│  - GitHub, Phone            │
+└─────────────────────────────┘
 ```
 
 **Props**: None
+
+**State**: None (routing state via useLocation)
+
+**Features**:
+- **Scroll-to-Contact**: Hash routing (`/about#contact`) automatically scrolls to ContactSection
+- **Scroll Logic**: Multiple retry attempts (300ms, 600ms, 1000ms) to handle async content loading
+- **Navigation Offset**: Accounts for fixed navbar (-80px offset)
 
 ---
 
@@ -327,45 +354,6 @@ https://public-api.wordpress.com/rest/v1.1/sites/jasonmablog.wordpress.com/posts
 
 ---
 
-### 5.5 ContactPage (`src/Pages/ContactPage.js`)
-
-**Purpose**: Contact form and contact information
-
-**Features**:
-- Form with validation (name, email, subject, message)
-- Integration with Formspree (configurable)
-- Success/Error status messages
-- Contact information display
-- Social media links
-
-**Props**: None
-
-**State**:
-```javascript
-{
-  formData: {
-    name: string,
-    email: string,
-    subject: string,
-    message: string
-  },
-  status: string, // "" | "success" | "error"
-  isSubmitting: boolean
-}
-```
-
-**Form Endpoint**:
-```
-https://formspree.io/f/YOUR_FORM_ID
-```
-*Note: Requires Formspree account setup*
-
-**Contact Information**:
-- Email: jasonma1127@gmail.com
-- Location: Taiwan
-
----
-
 ## 6. Components Specification
 
 ### 6.1 NavigationBar (`src/Components/NavigationBar.js`)
@@ -397,7 +385,6 @@ https://formspree.io/f/YOUR_FORM_ID
 2. About (`/about`)
 3. Portfolios (`/portfolios`)
 4. Blog (`/blog`)
-5. Contact (`/contact`)
 
 **Behavior**:
 - Desktop: Horizontal navigation bar
@@ -429,75 +416,202 @@ https://formspree.io/f/YOUR_FORM_ID
 
 ### 6.3 AboutSection (`src/Components/AboutSection.js`)
 
-**Purpose**: Display personal information
+**Purpose**: Display personal information with modern card-based layout
 
 **Props**: None
 
 **Content**:
 ```javascript
 {
-  Name: "Jason Ma",
-  Age: "23",
+  Name: "Shun-Che Ma (Jason)",
+  Position: "Software Developer",
   Email: "jasonma1127@gmail.com",
-  Education: "NTUST Taiwan TECH",
-  Major: "Computer Science"
+  Education: "M.S. Computer Science, NTUST",
+  Location: "Taipei, Taiwan",
+  LinkedIn: "https://www.linkedin.com/in/%E9%A0%86%E5%93%B2-%E9%A6%AC-542800125/"
 }
 ```
 
 **Features**:
-- Download CV button (to be implemented)
+- **Professional Bio**: Three paragraphs highlighting skills and experience
+- **Info Cards**: 6 interactive cards with FontAwesome icons
+- **Color Coded**: Each card has a unique color matching the site's design system
+- **LinkedIn Integration**: "View Resume on LinkedIn" button instead of CV download
+- **Animations**: Staggered entrance animations (0.1s delay per card)
+
+**Note**: Age field intentionally removed for evergreen content. Position is generic "Software Developer" rather than company-specific.
 
 ---
 
 ### 6.4 SkillsSection (`src/Components/SkillsSection.js`)
 
-**Purpose**: Display technical skills with visual progress bars
+**Purpose**: Display dynamic programming language statistics from GitHub
 
 **Props**: None
 
-**Skills**:
+**State**:
 ```javascript
-[
-  { title: "C++", percentage: "80%" },
-  { title: "Java", percentage: "76%" },
-  { title: "Python", percentage: "70%" },
-  { title: "HTML", percentage: "60%" },
-  { title: "CSS", percentage: "52%" },
-  { title: "JavaScript", percentage: "43%" }
-]
+{
+  languages: Array<{
+    name: string,
+    percentage: string,
+    bytes: number,
+    color: string
+  }>,
+  loading: boolean,
+  error: string | null
+}
 ```
 
+**Data Source**:
+- **Primary**: GitHub API via `fetchLanguageStats()` from `githubApi.js`
+- **Fallback**: Static data if API fails
+
+**Features**:
+- **Dynamic Data**: Fetches real language statistics from GitHub repositories
+- **Top 8 Languages**: Displays the 8 most used languages by bytes
+- **Loading State**: Shows spinner while fetching data
+- **Error Handling**: Displays error message and falls back to static data
+- **Color Coding**: Each language has GitHub's official color
+- **Animations**: Staggered progress bar animations
+- **Real-time Sync**: Data updates daily via 24-hour cache
+
 **Components Used**:
-- `ProgressBar` (6 instances)
+- `ProgressBar` (up to 8 instances with color and delay props)
 
 ---
 
 ### 6.5 ProgressBar (`src/Components/ProgressBar.js`)
 
-**Purpose**: Visual representation of skill proficiency
+**Purpose**: Visual representation of skill proficiency with custom colors
 
 **Props**:
 ```typescript
 {
-  title: string,      // Skill name
-  percentage: string  // Percentage value (e.g., "80%")
+  title: string,       // Skill/Language name
+  percentage: string,  // Percentage value (e.g., "80%")
+  color?: string,      // Optional custom color (hex or rgb)
+  delay?: number       // Optional animation delay in seconds
 }
 ```
 
 **State**:
 ```javascript
 {
-  percentage: string // Animated percentage value
+  percentage: number // Animated percentage value (0 to target)
 }
 ```
 
+**Features**:
+- **Animated Fill**: Smoothly animates from 0 to target percentage
+- **Custom Colors**: Bar color matches language color from GitHub
+- **Language Dot**: Small colored circle indicator next to title
+- **Staggered Animations**: Delay prop creates cascading effect
+- **Responsive**: Adapts to container width
+
 **Behavior**:
-- Animates from 0 to target percentage on mount
-- Visual bar fills to percentage width
+- Animation triggers after delay (default 0s)
+- useEffect with cleanup to prevent memory leaks
+- Visual bar background color can be customized per language
 
 ---
 
-### 6.6 PortfoliosCard (`src/Components/PortfoliosCard.js`)
+### 6.6 GitHubStats (`src/Components/GitHubStats.js`)
+
+**Purpose**: Display real-time GitHub account statistics
+
+**Props**: None
+
+**State**:
+```javascript
+{
+  stats: {
+    totalRepos: number,
+    totalStars: number,
+    totalForks: number,
+    followers: number
+  } | null,
+  loading: boolean,
+  error: string | null
+}
+```
+
+**Data Source**: GitHub API via `fetchGitHubStats()` from `githubApi.js`
+
+**Features**:
+- **4 Stat Cards**:
+  1. Public Repos (blue #89acd2)
+  2. Total Stars (yellow #f1e05a)
+  3. Total Forks (green #90d5b1)
+  4. Followers (purple #c6538c)
+- **Loading State**: Spinner with message
+- **Error Handling**: Displays error message if API fails
+- **Link to Profile**: "View Full GitHub Profile" link
+- **Animations**: Staggered card entrance (0.1s delay per card)
+- **Icons**: FontAwesome icons (faCodeBranch, faStar, faCodeFork, faUserGroup)
+
+**External Link**: https://github.com/jasonma1127
+
+---
+
+### 6.7 ContactSection (`src/Components/ContactSection.js`)
+
+**Purpose**: Display interactive contact methods with modern card design
+
+**Props**: None
+
+**Contact Methods**:
+```javascript
+[
+  {
+    icon: faEnvelope,
+    label: "Email",
+    value: "jasonma1127@gmail.com",
+    link: "mailto:jasonma1127@gmail.com?subject=Hello from Portfolio",
+    color: "#f34b7d",
+    description: "Send me an email"
+  },
+  {
+    icon: faLinkedin,
+    label: "LinkedIn",
+    value: "Connect with me",
+    link: "https://www.linkedin.com/in/%E9%A0%86%E5%93%B2-%E9%A6%AC-542800125/",
+    color: "#0077b5",
+    description: "Let's connect professionally"
+  },
+  {
+    icon: faGithub,
+    label: "GitHub",
+    value: "Check my projects",
+    link: "https://github.com/jasonma1127",
+    color: "#6e5494",
+    description: "View my repositories"
+  },
+  {
+    icon: faPhone,
+    label: "Phone",
+    value: "+886 920-257485",
+    link: "tel:+886920257485",
+    color: "#90d5b1",
+    description: "Give me a call"
+  }
+]
+```
+
+**Features**:
+- **4 Interactive Cards**: Email, LinkedIn, GitHub, Phone
+- **Click-to-Action**: Direct links (mailto:, tel:, https://)
+- **Hover Effects**: Background gradient and elevation change
+- **Arrow Indicator**: Animated arrow on hover
+- **Responsive Grid**: 2x2 on desktop, stacked on mobile
+- **Section ID**: `id="contact"` for hash routing from home page
+- **Response Time Info**: "I typically respond within 24-48 hours"
+
+**Icons Used**: faEnvelope, faLinkedin, faGithub (brands), faPhone
+
+---
+
+### 6.8 PortfoliosCard (`src/Components/PortfoliosCard.js`)
 
 **Purpose**: Display individual project information
 
@@ -531,7 +645,7 @@ https://formspree.io/f/YOUR_FORM_ID
 
 ---
 
-### 6.7 BlogCard (`src/Components/BlogCard.js`)
+### 6.9 BlogCard (`src/Components/BlogCard.js`)
 
 **Purpose**: Display individual blog post from WordPress
 
@@ -660,15 +774,55 @@ interface WordPressAPIResponse {
 
 ---
 
-### 7.3 Contact Form Data
+### 7.3 GitHub Data Schemas
 
+**Source**: `src/services/githubApi.js`
+
+**User Profile**:
 ```typescript
-interface ContactFormData {
-  name: string;              // Required
-  email: string;             // Required, email format
-  subject: string;           // Required
-  message: string;           // Required
+interface GitHubUserProfile {
+  name: string;
+  bio: string;
+  avatar_url: string;
+  public_repos: number;
+  followers: number;
+  following: number;
+  created_at: string;
+  updated_at: string;
 }
+```
+
+**Language Statistics**:
+```typescript
+interface LanguageStats {
+  name: string;              // Language name
+  bytes: number;             // Total bytes of code
+  percentage: string;        // Percentage (e.g., "45.2")
+  color: string;             // Hex color from LANGUAGE_COLORS map
+}
+
+type LanguageStatsArray = LanguageStats[];  // Sorted by bytes descending
+```
+
+**GitHub Statistics**:
+```typescript
+interface GitHubStats {
+  totalRepos: number;        // Total public repositories
+  totalStars: number;        // Sum of stars across all repos
+  totalForks: number;        // Sum of forks across all repos
+  followers: number;         // Account followers
+  following: number;         // Accounts following
+}
+```
+
+**Caching**:
+```typescript
+interface CachedData<T> {
+  data: T;
+  timestamp: number;         // Date.now() when cached
+}
+
+const CACHE_DURATION = 24 * 60 * 60 * 1000;  // 24 hours
 ```
 
 ---
@@ -724,37 +878,65 @@ const fetchWordPressPosts = async () => {
 
 ---
 
-### 8.2 Formspree Contact Form API
+### 8.2 GitHub REST API
 
-**Endpoint**:
+**Base URL**:
 ```
-POST https://formspree.io/f/YOUR_FORM_ID
-```
-
-**Setup Required**:
-1. Register at https://formspree.io/
-2. Create a new form
-3. Replace `YOUR_FORM_ID` in `src/Pages/ContactPage.js`
-
-**Request Format**:
-```javascript
-{
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    name: string,
-    email: string,
-    subject: string,
-    message: string
-  })
-}
+https://api.github.com
 ```
 
-**Response Handling**:
-- Success: Display success message, reset form
-- Error: Display error message, keep form data
+**Endpoints Used**:
+```
+GET /users/{username}                      // User profile
+GET /users/{username}/repos                // User repositories (paginated)
+GET /repos/{owner}/{repo}/languages        // Language breakdown per repo
+```
+
+**Implementation**: `src/services/githubApi.js`
+
+**Key Functions**:
+
+1. **fetchUserProfile()**
+   - Endpoint: `/users/jasonma1127`
+   - Returns: User profile data
+   - Cache key: `github_user_jasonma1127`
+
+2. **fetchUserRepos()**
+   - Endpoint: `/users/jasonma1127/repos?per_page=100&page={n}`
+   - Pagination: Fetches all pages until complete
+   - Excludes: Forked repositories in language stats
+   - Cache key: `github_repos_jasonma1127`
+
+3. **fetchLanguageStats()**
+   - Fetches languages for each repository
+   - Aggregates bytes across all repos
+   - Calculates percentages
+   - Maps to GitHub official colors
+   - Cache key: `github_languages_jasonma1127`
+
+4. **fetchGitHubStats()**
+   - Combines profile + repos data
+   - Calculates total stars/forks
+   - Cache key: `github_stats_jasonma1127`
+
+**Caching Strategy**:
+- **Storage**: localStorage
+- **TTL**: 24 hours (86,400,000 ms)
+- **Validation**: Timestamp check on each request
+- **Auto-cleanup**: Expired cache automatically removed
+- **Benefits**: Reduces API calls, avoids rate limiting
+
+**Rate Limiting**:
+- Unauthenticated: 60 requests/hour per IP
+- Caching mitigates this limit effectively
+
+**Error Handling**:
+- Network errors: Caught and logged
+- API errors: HTTP status checked
+- Component-level: Loading/Error states displayed
+- Fallback data: SkillsSection uses static data if API fails
+
+**CORS**: No issues (GitHub API supports CORS)
 
 ---
 
@@ -1040,9 +1222,10 @@ $home-animation-timing: ease;
   <Route path={process.env.PUBLIC_URL + "/about"} element={...} />
   <Route path={process.env.PUBLIC_URL + "/portfolios"} element={...} />
   <Route path={process.env.PUBLIC_URL + "/blog"} element={...} />
-  <Route path={process.env.PUBLIC_URL + "/contact"} element={...} />
 </Routes>
 ```
+
+**Note**: Contact page route removed. Contact section integrated into About page.
 
 ---
 
@@ -1051,7 +1234,30 @@ $home-animation-timing: ease;
 **Internal Navigation**:
 ```jsx
 import { Link } from "react-router-dom";
-<Link to="/contact">Contact Me</Link>
+<Link to="/about">About</Link>
+```
+
+**Hash Navigation** (scroll to section):
+```jsx
+// Home page Contact Me button
+<Link to="/about#contact">Contact Me</Link>
+
+// AboutPage.js handles scroll
+useEffect(() => {
+  if (location.hash === '#contact') {
+    const scrollToContact = () => {
+      const element = document.getElementById('contact');
+      if (element) {
+        const yOffset = -80;
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    };
+    setTimeout(scrollToContact, 300);
+    setTimeout(scrollToContact, 600);
+    setTimeout(scrollToContact, 1000);
+  }
+}, [location]);
 ```
 
 **External Navigation**:
@@ -1207,18 +1413,17 @@ git commit -m "docs(spec): update component specifications"
 ### 12.1 Planned Features
 
 **High Priority**:
-1. CV Download functionality
-2. Formspree form integration completion
-3. Project image uploads
-4. Blog post image optimization
-5. Dark/Light theme toggle
+1. Project image uploads for portfolio cards
+2. Blog post image optimization
+3. Dark/Light theme toggle
+4. SEO metadata for all pages
 
 **Medium Priority**:
 1. Search functionality for blog posts
 2. Pagination for blog and portfolios
-3. Contact form spam protection
-4. SEO optimization (meta tags, sitemap)
-5. Analytics integration (Google Analytics)
+3. Analytics integration (Google Analytics)
+4. Performance monitoring (Web Vitals)
+5. GitHub contribution calendar widget
 
 **Low Priority**:
 1. Multi-language support (EN/ZH)
@@ -1383,6 +1588,7 @@ npm run deploy     # Deploys to gh-pages
 
 | Version | Date       | Author    | Changes                                             |
 |---------|------------|-----------|-----------------------------------------------------|
+| 1.2.0   | 2025-12-30 | Jason Ma  | Major update: Added GitHub API integration, removed Contact page, added GitHubStats and ContactSection components, updated AboutPage structure, added hash routing for contact section, updated all component specifications |
 | 1.1.0   | 2025-12-30 | Jason Ma  | Added design tokens architecture, updated styling system, documented Home page animation fixes |
 | 1.0.0   | 2025-12-28 | Jason Ma  | Initial specification document                      |
 
