@@ -1,105 +1,215 @@
 // ============================================
-// ABOUT SECTION - Liquid Glass Design
+// ABOUT SECTION - Modern Card Layout
 // ============================================
 
 .about-section {
-  width: 42%;
-  height: 85%;
-  border-radius: $radius-lg;
-  color: $text-primary-dark;
+  @include glass-surface($glass-bg-dark, $glass-border-dark);
+  padding: $spacing-6;
+  border-radius: $radius-xl;
+  margin-bottom: $spacing-6;
+  animation: fadeInUp 0.6s ease-out;
 
   @include pad {
-    width: 90%;
-    margin: 0 auto $spacing-6;
+    padding: $spacing-5;
+    margin-bottom: $spacing-6;
   }
 
-  h2 {
-    color: $interactive-secondary;
-    margin-bottom: $spacing-3;
-    font-size: $text-3xl;
-    font-weight: $font-semibold;
+  @include mobile {
+    padding: $spacing-4;
+    margin-bottom: $spacing-4;
+  }
 
-    @include pad {
+  // Header
+  .about-header {
+    text-align: center;
+    margin-bottom: $spacing-6;
+
+    h2 {
       font-size: $text-4xl;
-    }
-
-    @include mobile {
-      font-size: $text-2xl;
-    }
-  }
-
-  .about-info {
-    @include glass-card($glass-bg-light);
-    background: $glass-bg-light;
-
-    .about-details {
-      display: flex;
-      font-size: $text-base;
-
-      @include pad {
-        font-size: $text-lg;
-      }
+      font-weight: $font-bold;
+      color: $text-primary-dark;
+      margin-bottom: $spacing-2;
 
       @include mobile {
-        font-size: $text-sm;
-      }
-
-      .about-items {
-        margin-top: $spacing-1;
-        margin-left: $spacing-3;
-        list-style: none;
-        font-weight: $font-semibold;
-        width: 40%;
-        height: 80%;
-        color: $text-primary-light;
-
-        .about-item {
-          padding: $spacing-2;
-        }
-      }
-
-      .info-items {
-        margin-top: $spacing-1;
-        list-style: none;
-        height: 80%;
-        color: $text-secondary-light;
-
-        .info-item {
-          padding: $spacing-2;
-        }
+        font-size: $text-3xl;
       }
     }
 
-    .download-cv-btn {
-      text-align: center;
-      margin: 0 auto;
+    .about-subtitle {
+      font-size: $text-lg;
+      color: $text-secondary-dark;
+      font-weight: $font-medium;
+
+      @include mobile {
+        font-size: $text-base;
+      }
+    }
+  }
+
+  // Content
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-6;
+  }
+
+  // Introduction Text
+  .about-intro {
+    p {
+      font-size: $text-lg;
+      line-height: $leading-relaxed;
+      color: $text-secondary-dark;
+      margin-bottom: $spacing-3;
+
+      @include mobile {
+        font-size: $text-base;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // Info Grid
+  .about-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $spacing-4;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: $spacing-3;
+    }
+  }
+
+  // Info Card
+  .info-card {
+    @include glass-surface(rgba(144, 213, 177, 0.08), rgba(144, 213, 177, 0.2));
+    padding: $spacing-4;
+    border-radius: $radius-lg;
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    transition: all $transition-base;
+    animation: fadeInUp 0.6s ease-out backwards;
+
+    @include mobile {
       padding: $spacing-3;
+    }
 
-      button {
-        font-size: $text-xl;
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $glass-shadow-lg;
+      border-color: rgba(144, 213, 177, 0.4);
+    }
+
+    .info-icon {
+      font-size: $text-3xl;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: $radius-md;
+      background: rgba(255, 255, 255, 0.05);
+      flex-shrink: 0;
+
+      @include mobile {
+        font-size: $text-2xl;
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    .info-content {
+      flex: 1;
+      min-width: 0;
+
+      .info-label {
+        font-size: $text-sm;
+        color: $text-tertiary-dark;
         font-weight: $font-medium;
-        font-family: $font-primary;
-        padding: $spacing-2 $spacing-5;
-        background: rgba(144, 213, 177, 0.15);
-        border-radius: $button-radius;
-        border: 1px solid $interactive-secondary;
-        color: $interactive-secondary;
-        cursor: pointer;
-        transition: all $transition-base;
-        box-shadow: $button-shadow;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+      }
 
-        &:hover {
-          background: $interactive-secondary;
-          color: $text-primary-dark;
-          transform: translateY(-2px);
-          box-shadow: $button-shadow-hover;
-        }
+      .info-value {
+        font-size: $text-lg;
+        color: $text-primary-dark;
+        font-weight: $font-semibold;
+        word-break: break-word;
 
         @include mobile {
           font-size: $text-base;
-          padding: $spacing-2 $spacing-3;
+        }
+
+        &.info-link {
+          color: $interactive-primary;
+          text-decoration: none;
+          transition: all $transition-base;
+
+          &:hover {
+            color: $interactive-primary-hover;
+            text-decoration: underline;
+          }
         }
       }
     }
+  }
+
+  // Actions
+  .about-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: $spacing-4;
+  }
+
+  .download-cv-btn {
+    padding: $spacing-3 $spacing-6;
+    font-size: $text-lg;
+    font-weight: $font-semibold;
+    font-family: $font-primary;
+    background: rgba(137, 172, 210, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: $button-radius;
+    border: 1px solid rgba(137, 172, 210, 0.5);
+    color: $text-primary-dark;
+    cursor: pointer;
+    transition: all $transition-base;
+    box-shadow: $button-shadow;
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+
+    @include mobile {
+      padding: $spacing-2 $spacing-4;
+      font-size: $text-base;
+    }
+
+    &:hover {
+      background: rgba(137, 172, 210, 0.35);
+      border-color: rgba(137, 172, 210, 0.7);
+      transform: translateY(-3px);
+      box-shadow: $button-shadow-hover;
+    }
+
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// Animation
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
