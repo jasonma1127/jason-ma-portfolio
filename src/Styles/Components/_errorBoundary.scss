@@ -1,0 +1,131 @@
+@use '../design-tokens' as *;
+
+.error-boundary {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $surface-secondary;
+  padding: $spacing-4;
+}
+
+.error-boundary-content {
+  text-align: center;
+  max-width: 600px;
+  animation: fadeIn 0.6s ease-out;
+
+  .error-icon {
+    font-size: 5rem;
+    color: #ff6b6b;
+    margin-bottom: $spacing-4;
+    animation: shake 0.5s ease-in-out;
+  }
+
+  h1 {
+    font-size: $text-4xl;
+    font-weight: $font-bold;
+    color: $text-primary-dark;
+    margin-bottom: $spacing-3;
+    line-height: $leading-tight;
+  }
+
+  .error-message {
+    font-size: $text-lg;
+    color: $text-secondary-dark;
+    margin-bottom: $spacing-5;
+    line-height: $leading-relaxed;
+  }
+
+  .error-details {
+    background: rgba(0, 0, 0, 0.2);
+    padding: $spacing-3;
+    border-radius: $radius-md;
+    margin-bottom: $spacing-4;
+    text-align: left;
+
+    summary {
+      color: $text-tertiary-dark;
+      font-size: $text-sm;
+      cursor: pointer;
+      margin-bottom: $spacing-2;
+
+      &:hover {
+        color: $text-secondary-dark;
+      }
+    }
+
+    pre {
+      font-size: $text-xs;
+      color: #ff6b6b;
+      overflow-x: auto;
+      padding: $spacing-2;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: $radius-sm;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+  }
+
+  .error-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    padding: $spacing-3 $spacing-6;
+    background: linear-gradient(135deg, $interactive-primary, $interactive-secondary);
+    color: $text-primary-dark;
+    border: none;
+    border-radius: $radius-md;
+    font-size: $text-lg;
+    font-weight: $font-semibold;
+    cursor: pointer;
+    transition: transform $transition-base, box-shadow $transition-base;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    svg {
+      font-size: $text-xl;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+@media (max-width: 480px) {
+  .error-boundary-content {
+    .error-icon {
+      font-size: 3.5rem;
+    }
+
+    h1 {
+      font-size: $text-3xl;
+    }
+
+    .error-message {
+      font-size: $text-base;
+    }
+
+    .error-home-btn {
+      font-size: $text-base;
+      padding: $spacing-2 $spacing-4;
+    }
+  }
+}

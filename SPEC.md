@@ -586,28 +586,20 @@ https://public-api.wordpress.com/rest/v1.1/sites/jasonmablog.wordpress.com/posts
     link: "https://github.com/jasonma1127",
     color: "#6e5494",
     description: "View my repositories"
-  },
-  {
-    icon: faPhone,
-    label: "Phone",
-    value: "+886 920-257485",
-    link: "tel:+886920257485",
-    color: "#90d5b1",
-    description: "Give me a call"
   }
 ]
 ```
 
 **Features**:
-- **4 Interactive Cards**: Email, LinkedIn, GitHub, Phone
-- **Click-to-Action**: Direct links (mailto:, tel:, https://)
+- **3 Interactive Cards**: Email, LinkedIn, GitHub
+- **Click-to-Action**: Direct links (mailto:, https://)
 - **Hover Effects**: Background gradient and elevation change
 - **Arrow Indicator**: Animated arrow on hover
-- **Responsive Grid**: 2x2 on desktop, stacked on mobile
+- **Responsive Grid**: Stacked layout on all devices
 - **Section ID**: `id="contact"` for hash routing from home page
 - **Response Time Info**: "I typically respond within 24-48 hours"
 
-**Icons Used**: faEnvelope, faLinkedin, faGithub (brands), faPhone
+**Icons Used**: faEnvelope, faLinkedin, faGithub (brands)
 
 ---
 

@@ -1,0 +1,114 @@
+@use '../design-tokens' as *;
+
+.not-found-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $surface-secondary;
+  padding: $spacing-4;
+}
+
+.not-found-content {
+  text-align: center;
+  max-width: 600px;
+  animation: fadeIn 0.6s ease-out;
+
+  .error-icon {
+    font-size: 6rem;
+    color: #f34b7d;
+    margin-bottom: $spacing-4;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .error-code {
+    font-size: $text-6xl;
+    font-weight: $font-bold;
+    color: $text-primary-dark;
+    margin-bottom: $spacing-2;
+    line-height: $leading-tight;
+  }
+
+  .error-message {
+    font-size: $text-3xl;
+    font-weight: $font-semibold;
+    color: $text-secondary-dark;
+    margin-bottom: $spacing-3;
+  }
+
+  .error-description {
+    font-size: $text-lg;
+    color: $text-tertiary-dark;
+    margin-bottom: $spacing-6;
+    line-height: $leading-relaxed;
+  }
+
+  .back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    padding: $spacing-3 $spacing-6;
+    background: linear-gradient(135deg, $interactive-primary, $interactive-secondary);
+    color: $text-primary-dark;
+    text-decoration: none;
+    border-radius: $radius-md;
+    font-size: $text-lg;
+    font-weight: $font-semibold;
+    transition: transform $transition-base, box-shadow $transition-base;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    svg {
+      font-size: $text-xl;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 480px) {
+  .not-found-content {
+    .error-icon {
+      font-size: 4rem;
+    }
+
+    .error-code {
+      font-size: $text-5xl;
+    }
+
+    .error-message {
+      font-size: $text-2xl;
+    }
+
+    .error-description {
+      font-size: $text-base;
+    }
+
+    .back-home-btn {
+      font-size: $text-base;
+      padding: $spacing-2 $spacing-4;
+    }
+  }
+}

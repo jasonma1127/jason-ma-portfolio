@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faEnvelope, faGraduationCap, faBriefcase, faMapMarkerAlt, faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faEnvelope, faGraduationCap, faBriefcase, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 function AboutSection() {

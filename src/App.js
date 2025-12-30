@@ -5,6 +5,7 @@ import HomePage from "./Pages/HomePage";
 import AboutPage from "./Pages/AboutPage";
 import PortfoliosPage from "./Pages/PortfoliosPage";
 import BlogPage from "./Pages/BlogPage";
+import NotFoundPage from "./Pages/NotFoundPage";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
             </div>
           </>
         } />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );
