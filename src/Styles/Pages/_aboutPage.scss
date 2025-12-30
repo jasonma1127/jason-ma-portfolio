@@ -1,24 +1,26 @@
 // ============================================
-// ABOUT PAGE - Liquid Glass Design
+// ABOUT PAGE - Modern Layout
 // ============================================
 
 .about-page {
   min-height: 100%;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(137, 172, 210, 0.22), transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(144, 213, 177, 0.18), transparent 50%),
-    $surface-secondary;
+  // Background inherited from body
 
   .content-section {
-    background: transparent;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: $spacing-4 $spacing-6;
     display: flex;
-    justify-content: space-around;
-    gap: $section-gap;
-    padding: $spacing-4 0;
+    flex-direction: column;
+    gap: $spacing-6;
 
     @include pad {
-      display: block;
-      width: 100%;
+      padding: $spacing-4;
+    }
+
+    @include mobile {
+      padding: $spacing-3;
+      gap: $spacing-4;
     }
   }
 }

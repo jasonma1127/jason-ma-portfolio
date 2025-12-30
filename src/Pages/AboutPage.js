@@ -1,4 +1,5 @@
 import AboutSection from "../Components/AboutSection";
+import GitHubStats from "../Components/GitHubStats";
 import SkillsSection from "../Components/SkillsSection";
 import Title from "../Components/Title";
 
@@ -8,8 +9,15 @@ function AboutPage() {
       <div className="title-section">
         <Title title="about" span="about" />
       </div>
+
       <div className="content-section">
+        {/* Personal Information */}
         <AboutSection />
+
+        {/* GitHub Statistics */}
+        <GitHubStats />
+
+        {/* Skills & Languages from GitHub */}
         <SkillsSection />
       </div>
     </div>
