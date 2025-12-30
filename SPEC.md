@@ -1,7 +1,7 @@
 # Jason Ma Portfolio Website - Technical Specification
 
-**Version:** 1.0.0
-**Last Updated:** 2025-12-28
+**Version:** 1.1.0
+**Last Updated:** 2025-12-30
 **Status:** Active Development
 **Purpose:** Single Source of Truth for Specification-Driven Development (SDD)
 
@@ -200,16 +200,28 @@ jason-ma-portfolio/
 - Professional title: "Jason Ma - Web Developer X Programmer"
 - Call-to-action "Contact Me" button
 - Social media icons (GitHub, Facebook, WordPress, YouTube)
-- Animation triggered by `useEffect` setting "move" class
+- Animation triggered by `useEffect` on every page visit
 
 **Props**: None
 
 **State**:
 ```javascript
 {
-  movement: string // Animation class trigger
+  movement: string // Animation class trigger ("" or "move")
 }
 ```
+
+**Animation Lifecycle**:
+```javascript
+useEffect(() => {
+  setMovement("");           // Reset animation
+  const timer = setTimeout(() => {
+    setMovement("move");     // Trigger animation
+  }, 50);
+  return () => clearTimeout(timer);
+}, []);
+```
+This ensures animation plays on every visit, not just page refresh
 
 **External Links**:
 - GitHub: https://github.com/jasonma1127
@@ -748,37 +760,141 @@ POST https://formspree.io/f/YOUR_FORM_ID
 
 ## 9. Styling System
 
-### 9.1 Color Palette
+### 9.1 Design Tokens Architecture
 
-**Primary Colors**:
+**Three-Tier Token System**:
+1. **Primitive Tokens** - Base colors (never used directly in components)
+2. **Semantic Tokens** - Purpose-based (e.g., `$text-primary-dark`, `$surface-secondary`)
+3. **Component Tokens** - Component-specific (e.g., `$home-img-height`, `$button-radius`)
+
+**Benefits**:
+- ✅ No hardcoded values
+- ✅ Easy theming and maintenance
+- ✅ Consistent visual language
+- ✅ Single source of truth
+
+**File Structure**:
+- `src/Styles/_design-tokens.scss` - Primitive & semantic tokens
+- `src/Styles/_component-tokens.scss` - Component-specific tokens
+- `src/Styles/_mixins.scss` - Reusable mixins
+
+### 9.2 Color Palette
+
+**Primitive Colors** (Base - Do not use directly):
 ```scss
-$gray: #595d64;       // Main background
-$white: #f3f5f8;      // Text color
-$blue: #89acd2;       // Accent blue
-$green: #90d5b1;      // Accent green
+$primitive-blue-400: #89acd2;
+$primitive-green-400: #90d5b1;
+$primitive-gray-700: #595d64;
+$primitive-gray-100: #f3f5f8;
+// Additional shades defined in _design-tokens.scss
 ```
 
-**Usage**:
-- Background: `$gray`
-- Primary text: `$white`
-- Buttons/Links: `$blue` or `$green`
-- Hover effects: Lighter shades
+**Semantic Tokens** (Use in components):
+```scss
+$surface-secondary: $primitive-gray-700;      // Dark pages background
+$text-primary-dark: $primitive-white;         // Primary text on dark bg
+$text-secondary-dark: $primitive-gray-200;    // Secondary text on dark bg
+$interactive-primary: $primitive-blue-400;    // Primary interactive color
+$interactive-secondary: $primitive-green-400; // Secondary interactive color
+```
+
+**Brand Colors** (Social Media):
+```scss
+$brand-github: #6e5494;
+$brand-facebook: #4267b2;
+$brand-wordpress: #21759b;
+$brand-youtube: #ff0000;
+```
+
+**Glass Effect Tokens**:
+```scss
+$glass-bg-dark: rgba(60, 64, 67, 0.72);
+$glass-border-dark: rgba(255, 255, 255, 0.15);
+$glass-blur: saturate(180%) blur(20px);
+$glass-shadow-md: 0 8px 32px rgba(0, 0, 0, 0.12);
+```
+
+### 9.3 Component Tokens
+
+**Home Page Animation**:
+```scss
+$home-img-container-width: 40%;
+$home-img-height: 40vh;
+$home-img-height-mobile: 30vh;
+$home-img-move-distance: 5%;
+$home-title-letter-spacing: 4px;
+$home-title-letter-spacing-mobile: 2px;
+$home-animation-duration: 1s;
+$home-animation-delay: 1s;
+$home-animation-timing: ease;
+```
+
+**Button Tokens**:
+```scss
+$button-radius: $radius-md;  // 12px
+$button-shadow: $glass-shadow-sm;
+$button-shadow-hover: $glass-shadow-lg;
+```
+
+### 9.4 Spacing System (8pt Grid)
+
+```scss
+$spacing-1: 0.5rem;     // 8px
+$spacing-2: 1rem;       // 16px
+$spacing-3: 1.5rem;     // 24px
+$spacing-4: 2rem;       // 32px
+$spacing-5: 2.5rem;     // 40px
+$spacing-6: 3rem;       // 48px
+$spacing-8: 4rem;       // 64px
+$spacing-10: 5rem;      // 80px
+$spacing-12: 6rem;      // 96px
+$spacing-16: 8rem;      // 128px
+```
+
+All spacing must use tokens from the 8pt grid system
 
 ---
 
-### 9.2 Typography
+### 9.5 Typography
 
+**Font Stack**:
 ```scss
-body {
-  color: #f3f5f8;
-  font-family: sans-serif;
-  font-size: 1.2rem;
-}
+$font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+```
+
+**Font Sizes** (Modular scale: 1.25 ratio):
+```scss
+$text-xs: 0.75rem;      // 12px
+$text-sm: 0.875rem;     // 14px
+$text-base: 1rem;       // 16px
+$text-lg: 1.125rem;     // 18px
+$text-xl: 1.25rem;      // 20px
+$text-2xl: 1.5rem;      // 24px
+$text-3xl: 1.875rem;    // 30px
+$text-4xl: 2.25rem;     // 36px
+$text-5xl: 3rem;        // 48px
+$text-6xl: 3.75rem;     // 60px
+```
+
+**Font Weights**:
+```scss
+$font-normal: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+```
+
+**Line Heights**:
+```scss
+$leading-tight: 1.25;
+$leading-normal: 1.5;
+$leading-relaxed: 1.625;
+$leading-loose: 2;
 ```
 
 ---
 
-### 9.3 Responsive Breakpoints
+### 9.6 Responsive Breakpoints
 
 ```scss
 @mixin mobile {
@@ -801,16 +917,57 @@ body {
 
 ---
 
-### 9.4 Layout System
+### 9.7 Mixins
 
-**Page Layout**:
+**Glass Surface Mixin**:
 ```scss
+@mixin glass-surface($bg-color, $border-color) {
+  background: $bg-color;
+  backdrop-filter: $glass-blur;
+  -webkit-backdrop-filter: $glass-blur;
+  border: 1px solid $border-color;
+  box-shadow: $glass-shadow-md, $glass-inset-highlight;
+}
+```
+
+**Home Icon Animation Mixin**:
+```scss
+@mixin home-icon-animation($brand-color) {
+  opacity: 1;
+  transition: $home-animation-duration all $home-animation-timing;
+  transition-delay: $home-animation-delay;
+
+  &:hover {
+    color: $brand-color;
+    transform: translateY(-3px) scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba($brand-color, 0.3));
+    transition-delay: 0s;
+  }
+}
+```
+
+### 9.8 Layout System
+
+**Page Layout** (Flexbox for viewport height):
+```scss
+html, body, #root {
+  height: 100%;
+}
+
 .App {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
   .nav-bar {
     height: 10vh;
+    min-height: 64px;
+    flex-shrink: 0;
   }
+
   .main-content {
-    height: 90vh;
+    flex: 1;  // Fills remaining space, prevents bottom whitespace
+    background: $surface-secondary;
   }
 }
 ```
@@ -834,12 +991,28 @@ body {
 
 ---
 
-### 9.5 Animation Classes
+### 9.9 Animation System
 
+**Home Page Animations**:
+
+All animations controlled by design tokens for easy maintenance:
+```scss
+// Animation timing
+$home-animation-duration: 1s;
+$home-animation-delay: 1s;
+$home-animation-timing: ease;
+```
+
+**Animation Trigger**:
+- React useEffect resets animation on every page visit
+- "move" class applied after component mount
+- Ensures animation plays when navigating between pages
+
+**Animation Classes**:
 ```scss
 .move {
-  // Animation properties defined in respective component styles
-  // Used for entrance animations
+  // Applied to trigger entrance animations
+  // Specific properties defined per component
 }
 ```
 
@@ -1208,9 +1381,10 @@ npm run deploy     # Deploys to gh-pages
 
 ## Document Changelog
 
-| Version | Date       | Author    | Changes                          |
-|---------|------------|-----------|----------------------------------|
-| 1.0.0   | 2025-12-28 | Jason Ma  | Initial specification document   |
+| Version | Date       | Author    | Changes                                             |
+|---------|------------|-----------|-----------------------------------------------------|
+| 1.1.0   | 2025-12-30 | Jason Ma  | Added design tokens architecture, updated styling system, documented Home page animation fixes |
+| 1.0.0   | 2025-12-28 | Jason Ma  | Initial specification document                      |
 
 ---
 
