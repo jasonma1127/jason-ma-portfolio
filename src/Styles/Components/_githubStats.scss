@@ -1,0 +1,185 @@
+// ============================================
+// GITHUB STATS - Statistics Cards
+// ============================================
+
+.github-stats {
+  @include glass-surface($glass-bg-dark, $glass-border-dark);
+  padding: $spacing-6;
+  border-radius: $radius-xl;
+  margin-bottom: $spacing-6;
+  animation: fadeInUp 0.6s ease-out 0.2s backwards;
+
+  @include pad {
+    padding: $spacing-5;
+    margin-bottom: $spacing-6;
+  }
+
+  @include mobile {
+    padding: $spacing-4;
+    margin-bottom: $spacing-4;
+  }
+
+  // Header
+  .stats-header {
+    text-align: center;
+    margin-bottom: $spacing-6;
+
+    h2 {
+      font-size: $text-4xl;
+      font-weight: $font-bold;
+      color: $text-primary-dark;
+      margin-bottom: $spacing-2;
+
+      @include mobile {
+        font-size: $text-3xl;
+      }
+    }
+
+    .stats-subtitle {
+      font-size: $text-lg;
+      color: $text-secondary-dark;
+      font-weight: $font-medium;
+
+      @include mobile {
+        font-size: $text-base;
+      }
+    }
+  }
+
+  // Stats Grid
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: $spacing-4;
+    margin-bottom: $spacing-4;
+
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-3;
+    }
+  }
+
+  // Stat Card
+  .stat-card {
+    @include glass-surface(rgba(137, 172, 210, 0.08), rgba(137, 172, 210, 0.2));
+    padding: $spacing-4;
+    border-radius: $radius-lg;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all $transition-base;
+    animation: fadeInUp 0.6s ease-out backwards;
+
+    @include mobile {
+      padding: $spacing-3;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $glass-shadow-lg;
+    }
+
+    .stat-icon {
+      font-size: $text-4xl;
+      margin-bottom: $spacing-3;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+
+      @include mobile {
+        font-size: $text-3xl;
+        margin-bottom: $spacing-2;
+      }
+    }
+
+    .stat-content {
+      .stat-value {
+        font-size: $text-3xl;
+        font-weight: $font-bold;
+        color: $text-primary-dark;
+        margin-bottom: $spacing-1;
+
+        @include mobile {
+          font-size: $text-2xl;
+        }
+      }
+
+      .stat-label {
+        font-size: $text-sm;
+        color: $text-secondary-dark;
+        font-weight: $font-medium;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+
+  // Footer
+  .stats-footer {
+    text-align: center;
+    padding-top: $spacing-4;
+    border-top: 1px solid $border-dark;
+
+    .github-profile-link {
+      display: inline-flex;
+      align-items: center;
+      gap: $spacing-2;
+      padding: $spacing-2 $spacing-4;
+      font-size: $text-base;
+      font-weight: $font-medium;
+      color: $interactive-primary;
+      text-decoration: none;
+      border-radius: $radius-md;
+      transition: all $transition-base;
+
+      &:hover {
+        color: $interactive-primary-hover;
+        background: rgba(137, 172, 210, 0.1);
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  // Loading State
+  &.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(137, 172, 210, 0.2);
+      border-top-color: $interactive-primary;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: $spacing-2;
+    }
+
+    p {
+      color: $text-secondary-dark;
+      font-size: $text-base;
+    }
+  }
+
+  // Error State
+  &.error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    color: #f34b7d;
+
+    p {
+      font-size: $text-base;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
