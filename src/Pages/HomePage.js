@@ -47,7 +47,7 @@ function HomePage() {
         <p>Web Developer X Programmer</p>
       </div>
       <div className={`home-contact-btn ${movement}`}>
-        <Link to="/about">
+        <Link to="/about#contact">
           <button>Contact Me</button>
         </Link>
       </div>
