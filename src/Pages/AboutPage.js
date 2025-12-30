@@ -1,6 +1,7 @@
 import AboutSection from "../Components/AboutSection";
 import GitHubStats from "../Components/GitHubStats";
 import SkillsSection from "../Components/SkillsSection";
+import ContactSection from "../Components/ContactSection";
 import Title from "../Components/Title";
 
 function AboutPage() {
@@ -19,6 +20,9 @@ function AboutPage() {
 
         {/* Skills & Languages from GitHub */}
         <SkillsSection />
+
+        {/* Contact Information */}
+        <ContactSection />
       </div>
     </div>
   );
