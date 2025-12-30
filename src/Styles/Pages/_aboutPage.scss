@@ -1,12 +1,23 @@
+// ============================================
+// ABOUT PAGE - Liquid Glass Design
+// ============================================
+
 .about-page {
-  height: 100%;
-  background-color: #595d64;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(137, 172, 210, 0.22), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(144, 213, 177, 0.18), transparent 50%),
+    $surface-secondary;
+
   .content-section {
-    background-color: #595d64;
+    background: transparent;
     display: flex;
     justify-content: space-around;
+    gap: $section-gap;
+    padding: $spacing-4 0;
+
     @include pad {
-      display: inline-block;
+      display: block;
       width: 100%;
     }
   }

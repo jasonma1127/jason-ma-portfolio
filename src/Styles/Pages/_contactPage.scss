@@ -1,38 +1,45 @@
+// ============================================
+// CONTACT PAGE - Liquid Glass Design
+// ============================================
+
 .contact-page {
-  height: 100%;
-  background-color: $dark-bg;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(137, 172, 210, 0.22), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(144, 213, 177, 0.18), transparent 50%),
+    $surface-secondary;
 
   .content-section {
-    padding: 2rem;
+    padding: $spacing-4;
   }
 
   .contact-form {
-    max-width: 1200px;
+    max-width: $section-max-width;
     margin: 0 auto;
   }
 
   .status-message {
-    padding: 1.2rem;
-    margin: 2rem auto;
-    border-radius: 12px;
+    padding: $status-padding;
+    margin: $spacing-4 auto;
+    border-radius: $status-radius;
     text-align: center;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: $text-lg;
+    font-weight: $font-medium;
     max-width: 600px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 
     &.success {
-      background: rgba(144, 213, 177, 0.15);
-      border: 1px solid rgba(144, 213, 177, 0.5);
-      color: $accent-green;
+      background: $status-success-bg;
+      border: 1px solid $status-success-border;
+      color: $status-success-text;
       box-shadow: 0 4px 16px rgba(144, 213, 177, 0.1);
     }
 
     &.error {
-      background: rgba(255, 107, 107, 0.15);
-      border: 1px solid rgba(255, 107, 107, 0.5);
-      color: #ff6b6b;
+      background: $status-error-bg;
+      border: 1px solid $status-error-border;
+      color: $status-error-text;
       box-shadow: 0 4px 16px rgba(255, 107, 107, 0.1);
     }
   }
@@ -46,48 +53,57 @@
 
     .contact-info {
       width: 50%;
-      padding: 2rem 4rem;
+      padding: $spacing-4 $spacing-8;
 
       @include pad {
         width: 100%;
       }
 
       @include mobile {
-        font-size: 0.8rem;
-        padding: 2rem 0;
+        font-size: $text-sm;
+        padding: $spacing-4 0;
       }
 
       .contact {
         display: flex;
         justify-content: space-between;
-        margin: 1.5rem;
+        margin: $spacing-3;
 
         h2 {
-          font-weight: 600;
+          font-weight: $font-semibold;
+          font-size: $text-xl;
+          color: $text-primary-dark;
+
+          @include mobile {
+            font-size: $text-base;
+          }
         }
 
         input {
           width: 70%;
-          border-radius: 12px;
-          padding: 1rem;
-          font-size: 1rem;
-          font-family: 'Inter', sans-serif;
+          border-radius: $input-radius;
+          padding: $input-padding;
+          font-size: $text-base;
+          font-family: $font-primary;
           border: 1px solid rgba(137, 172, 210, 0.3);
-          background: rgba(255, 255, 255, 0.08);
+          background: $input-bg-light;
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
-          color: $text-light;
-          transition: all 0.3s $transition-smooth;
+          color: $input-text-dark;
+          transition: all $transition-base;
 
           &:focus {
-            outline: none;
-            border-color: rgba(144, 213, 177, 0.6);
-            background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 0 0 3px rgba(144, 213, 177, 0.1);
+            @include focus-ring;
+            background: $input-bg-dark;
           }
 
           &::placeholder {
-            color: rgba(243, 245, 248, 0.4);
+            color: $input-placeholder-dark;
+          }
+
+          @include mobile {
+            font-size: $text-sm;
+            padding: $spacing-2;
           }
         }
       }
@@ -95,54 +111,63 @@
 
     .contact-message {
       width: 50%;
-      padding: 2rem 0;
+      padding: $spacing-4 0;
 
       @include pad {
         width: 100%;
-        padding: 0 4rem;
+        padding: 0 $spacing-8;
       }
 
       @include mobile {
-        font-size: 0.8rem;
-        padding: 0 0;
+        font-size: $text-sm;
+        padding: 0;
       }
 
       .contact {
         display: flex;
         justify-content: space-between;
-        margin: 1.5rem;
+        margin: $spacing-3;
 
         h2 {
           display: flex;
           align-items: flex-start;
-          margin-top: 0.5rem;
-          font-weight: 600;
+          margin-top: $spacing-1;
+          font-weight: $font-semibold;
+          font-size: $text-xl;
+          color: $text-primary-dark;
+
+          @include mobile {
+            font-size: $text-base;
+          }
         }
 
         textarea {
-          border-radius: 12px;
+          border-radius: $input-radius;
           min-height: 200px;
           width: 70%;
-          padding: 1rem;
-          font-size: 1rem;
-          font-family: 'Inter', sans-serif;
+          padding: $input-padding;
+          font-size: $text-base;
+          font-family: $font-primary;
           border: 1px solid rgba(137, 172, 210, 0.3);
-          background: rgba(255, 255, 255, 0.08);
+          background: $input-bg-light;
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
-          color: $text-light;
+          color: $input-text-dark;
           resize: vertical;
-          transition: all 0.3s $transition-smooth;
+          transition: all $transition-base;
 
           &:focus {
-            outline: none;
-            border-color: rgba(144, 213, 177, 0.6);
-            background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 0 0 3px rgba(144, 213, 177, 0.1);
+            @include focus-ring;
+            background: $input-bg-dark;
           }
 
           &::placeholder {
-            color: rgba(243, 245, 248, 0.4);
+            color: $input-placeholder-dark;
+          }
+
+          @include mobile {
+            font-size: $text-sm;
+            padding: $spacing-2;
           }
         }
       }
@@ -151,29 +176,29 @@
 
   .contact-btn {
     text-align: center;
-    margin: 2.5rem 0;
+    margin: $spacing-5 0;
 
     button {
       min-width: 220px;
-      font-size: 1.5rem;
-      font-weight: 600;
-      font-family: 'Inter', sans-serif;
-      padding: 1.1rem 2.5rem;
-      border-radius: 12px;
-      color: $text-light;
+      font-size: $text-2xl;
+      font-weight: $font-semibold;
+      font-family: $font-primary;
+      padding: $spacing-2 $spacing-5;
+      border-radius: $button-radius;
+      color: $text-primary-dark;
       background: rgba(144, 213, 177, 0.25);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(144, 213, 177, 0.5);
       cursor: pointer;
-      transition: all 0.3s $transition-smooth;
-      box-shadow: 0 4px 16px rgba(144, 213, 177, 0.15);
+      transition: all $transition-base;
+      box-shadow: $button-shadow;
 
       &:hover:not(:disabled) {
-        background: rgba(144, 213, 177, 0.35);
+        background: rgba(144, 213, 177, 0.4);
         border-color: rgba(144, 213, 177, 0.7);
         transform: translateY(-3px);
-        box-shadow: 0 8px 24px rgba(144, 213, 177, 0.25);
+        box-shadow: $button-shadow-hover;
       }
 
       &:active:not(:disabled) {
@@ -187,64 +212,68 @@
 
       @include pad {
         min-width: 200px;
-        font-size: 2rem;
-        padding: 1.3rem 3rem;
+        font-size: $text-3xl;
+        padding: $spacing-3 $spacing-6;
       }
 
       @include mobile {
         min-width: 180px;
-        font-size: 1.2rem;
-        padding: 1rem 2rem;
+        font-size: $text-xl;
+        padding: $spacing-2 $spacing-4;
       }
     }
   }
 
   .contact-info-section {
     max-width: 900px;
-    margin: 4rem auto 2rem;
+    margin: $spacing-8 auto $spacing-4;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
-    padding: 2.5rem;
-    background: rgba(89, 93, 100, 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid $glass-border;
-    border-radius: 16px;
-    box-shadow: $glass-shadow;
+    gap: $spacing-4;
+    padding: $spacing-5;
+    @include glass-surface($glass-bg-dark, $glass-border-dark);
+    border-radius: $radius-lg;
 
     @include mobile {
       grid-template-columns: 1fr;
-      padding: 2rem 1.5rem;
+      padding: $spacing-4 $spacing-3;
     }
 
     .info-item {
       text-align: center;
 
       h3 {
-        color: $accent-blue;
-        margin-bottom: 1rem;
-        font-size: 1.3rem;
-        font-weight: 600;
+        color: $interactive-primary;
+        margin-bottom: $spacing-2;
+        font-size: $text-xl;
+        font-weight: $font-semibold;
+
+        @include mobile {
+          font-size: $text-lg;
+        }
       }
 
       p {
-        color: $text-light;
-        font-size: 1.1rem;
+        color: $text-primary-dark;
+        font-size: $text-lg;
+
+        @include mobile {
+          font-size: $text-base;
+        }
       }
 
       .social-links {
         display: flex;
         flex-direction: column;
-        gap: 0.6rem;
+        gap: $spacing-1;
 
         a {
-          color: $accent-green;
+          color: $interactive-secondary;
           text-decoration: none;
-          transition: all 0.3s $transition-smooth;
-          padding: 0.6rem;
-          border-radius: 8px;
-          font-weight: 500;
+          transition: all $transition-base;
+          padding: $spacing-1;
+          border-radius: $radius-sm;
+          font-weight: $font-medium;
 
           &:hover {
             background: rgba(144, 213, 177, 0.15);

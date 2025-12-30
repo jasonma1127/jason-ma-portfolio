@@ -1,45 +1,59 @@
+// ============================================
+// BLOG PAGE - Liquid Glass Design
+// ============================================
+
 .blog-page {
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 25% 25%, rgba(137, 172, 210, 0.2), transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(144, 213, 177, 0.16), transparent 50%),
+    $surface-secondary;
+
   .content-section {
-    padding: 2.5rem;
+    padding: $section-padding;
+
+    @include mobile {
+      padding: $section-padding-mobile;
+    }
 
     .blog-filter {
       display: flex;
-      gap: 1rem;
+      gap: $spacing-2;
       justify-content: center;
-      margin-bottom: 3.5rem;
-
-      button {
-        padding: 0.9rem 1.8rem;
-        border: 1px solid rgba(137, 172, 210, 0.4);
-        background: rgba(137, 172, 210, 0.15);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        color: $text-light;
-        border-radius: 10px;
-        cursor: pointer;
-        font-size: 1rem;
-        font-weight: 600;
-        font-family: 'Inter', sans-serif;
-        transition: all 0.3s $transition-smooth;
-        box-shadow: 0 2px 8px rgba(137, 172, 210, 0.15);
-
-        &:hover {
-          background: rgba(137, 172, 210, 0.25);
-          border-color: rgba(137, 172, 210, 0.6);
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(137, 172, 210, 0.2);
-        }
-
-        &.active {
-          background: rgba(137, 172, 210, 0.35);
-          border-color: rgba(137, 172, 210, 0.7);
-        }
-      }
+      margin-bottom: $spacing-6;
 
       @include mobile {
         flex-direction: column;
         align-items: stretch;
-        gap: 0.8rem;
+        gap: $spacing-2;
+      }
+
+      button {
+        padding: $spacing-2 $spacing-3;
+        border: 1px solid rgba(137, 172, 210, 0.4);
+        background: rgba(137, 172, 210, 0.15);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        color: $text-primary-dark;
+        border-radius: $radius-md;
+        cursor: pointer;
+        font-size: $text-base;
+        font-weight: $font-semibold;
+        font-family: $font-primary;
+        transition: all $transition-base;
+        box-shadow: $glass-shadow-sm;
+
+        &:hover {
+          background: rgba(137, 172, 210, 0.3);
+          border-color: rgba(137, 172, 210, 0.6);
+          transform: translateY(-2px);
+          box-shadow: $glass-shadow-md;
+        }
+
+        &.active {
+          background: rgba(137, 172, 210, 0.4);
+          border-color: rgba(137, 172, 210, 0.7);
+        }
       }
     }
 
@@ -47,26 +61,24 @@
     .blog-error,
     .no-posts {
       text-align: center;
-      padding: 4rem 3rem;
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: $accent-blue;
+      padding: $spacing-8 $spacing-6;
+      font-size: $text-2xl;
+      font-weight: $font-medium;
+      color: $interactive-primary;
+
+      @include mobile {
+        font-size: $text-xl;
+        padding: $spacing-6 $spacing-4;
+      }
     }
 
     .blog-error {
-      color: #ff6b6b;
+      color: $status-error-text;
     }
 
     .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 2.5rem;
-      margin-top: 2rem;
-
-      @include mobile {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
+      @include grid-auto-fit;
+      margin-top: $spacing-4;
     }
   }
 }
