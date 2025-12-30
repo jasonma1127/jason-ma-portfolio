@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 function ContactSection() {
@@ -27,14 +27,6 @@ function ContactSection() {
       link: "https://github.com/jasonma1127",
       color: "#6e5494",
       description: "View my repositories"
-    },
-    {
-      icon: faPhone,
-      label: "Phone",
-      value: "+886 920-257485",
-      link: "tel:+886920257485",
-      color: "#90d5b1",
-      description: "Give me a call"
     }
   ];
 
