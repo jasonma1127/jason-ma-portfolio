@@ -22,7 +22,7 @@ function BlogPage() {
       setPosts(data.posts || []);
       setLoading(false);
     } catch (err) {
-      setError("無法載入文章，請稍後再試");
+      setError("Unable to load posts. Please try again later.");
       setLoading(false);
       console.error("Error fetching WordPress posts:", err);
     }
@@ -30,7 +30,7 @@ function BlogPage() {
 
   const getFilteredPosts = () => {
     if (filter === "all") return posts;
-    // 可以根據分類篩選，WordPress API 會提供 categories 資訊
+    // Filter by category - WordPress API provides category information
     return posts.filter((post) => {
       const categories = Object.values(post.categories || {});
       return categories.some((cat) => cat.slug === filter);
@@ -48,25 +48,25 @@ function BlogPage() {
             className={filter === "all" ? "active" : ""}
             onClick={() => setFilter("all")}
           >
-            全部文章
+            All Posts
           </button>
           <button
             className={filter === "tech" ? "active" : ""}
             onClick={() => setFilter("tech")}
           >
-            技術文章
+            Tech Articles
           </button>
           <button
             className={filter === "life" ? "active" : ""}
             onClick={() => setFilter("life")}
           >
-            生活隨筆
+            Life & Thoughts
           </button>
         </div>
 
         {loading && (
           <div className="blog-loading">
-            <p>載入中...</p>
+            <p>Loading...</p>
           </div>
         )}
 
@@ -83,7 +83,7 @@ function BlogPage() {
                 <BlogCard key={post.ID} post={post} />
               ))
             ) : (
-              <p className="no-posts">目前沒有文章</p>
+              <p className="no-posts">No posts available</p>
             )}
           </div>
         )}

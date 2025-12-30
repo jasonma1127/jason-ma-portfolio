@@ -32,13 +32,13 @@ function PortfoliosPage() {
             className={filter === "all" ? "active" : ""}
             onClick={() => setFilter("all")}
           >
-            全部專案
+            All Projects
           </button>
           <button
             className={filter === "featured" ? "active" : ""}
             onClick={() => setFilter("featured")}
           >
-            精選專案
+            Featured Projects
           </button>
         </div>
 
@@ -48,7 +48,7 @@ function PortfoliosPage() {
               <PortfoliosCard key={project.id} project={project} />
             ))
           ) : (
-            <p className="no-projects">目前沒有專案</p>
+            <p className="no-projects">No projects available</p>
           )}
         </div>
       </div>
