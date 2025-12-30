@@ -1,20 +1,17 @@
+// ============================================
+// BLOG CARD - Liquid Glass Design
+// ============================================
+
 .blog-card {
-  background: $glass-bg-dark;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid $glass-border;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: $glass-shadow;
-  transition: all 0.4s $transition-smooth;
+  @include glass-card($card-bg-dark);
   display: flex;
   flex-direction: column;
-  will-change: transform;
+  overflow: hidden;
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: $glass-shadow-hover;
-    border-color: rgba(137, 172, 210, 0.3);
+    transform: translateY(-4px);
+    box-shadow: $card-shadow-hover, $glass-inset-highlight;
+    border-color: $glass-border-dark;
   }
 
   .blog-card-image {
@@ -26,7 +23,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.4s $transition-smooth;
+      transition: transform $transition-base;
     }
 
     &:hover img {
@@ -35,41 +32,45 @@
   }
 
   .blog-card-content {
-    padding: 2rem;
+    padding: $card-padding;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    gap: $spacing-2;
 
     .blog-card-meta {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.2rem;
       flex-wrap: wrap;
-      gap: 0.6rem;
+      gap: $spacing-2;
 
       .blog-date {
-        font-size: 0.9rem;
-        color: $accent-green;
-        font-weight: 500;
+        font-size: $text-sm;
+        color: $interactive-secondary;
+        font-weight: $font-medium;
+
+        @include mobile {
+          font-size: $text-xs;
+        }
       }
 
       .blog-categories {
         display: flex;
-        gap: 0.5rem;
+        gap: $spacing-1;
         flex-wrap: wrap;
 
         .blog-category {
           background: rgba(137, 172, 210, 0.25);
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
-          border: 1px solid rgba(137, 172, 210, 0.3);
-          padding: 0.4rem 1rem;
-          border-radius: 16px;
-          font-size: 0.8rem;
-          color: $text-light;
-          font-weight: 500;
-          transition: all 0.3s $transition-smooth;
+          border: 1px solid rgba(137, 172, 210, 0.4);
+          padding: 6px $spacing-2;
+          border-radius: $radius-full;
+          font-size: $text-xs;
+          color: $text-primary-dark;
+          font-weight: $font-medium;
+          transition: all $transition-fast;
 
           &:hover {
             background: rgba(137, 172, 210, 0.4);
@@ -80,46 +81,61 @@
     }
 
     .blog-card-title {
-      font-size: 1.6rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: $text-light;
-      line-height: 1.4;
+      font-size: $text-2xl;
+      font-weight: $font-semibold;
+      color: $text-primary-dark;
+      line-height: $leading-tight;
+
+      @include pad {
+        font-size: $text-3xl;
+      }
+
+      @include mobile {
+        font-size: $text-xl;
+      }
     }
 
     .blog-card-excerpt {
-      font-size: 1rem;
-      color: $text-muted;
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
+      font-size: $text-base;
+      color: $text-secondary-dark;
+      line-height: $leading-relaxed;
       flex-grow: 1;
+
+      @include mobile {
+        font-size: $text-sm;
+      }
     }
 
     .blog-card-footer {
-      margin-top: auto;
+      margin-top: $spacing-2;
 
       .blog-card-link {
         text-decoration: none;
 
         button {
-          padding: 0.9rem 2.2rem;
+          width: 100%;
+          padding: $spacing-2 $spacing-4;
           border: 1px solid rgba(144, 213, 177, 0.4);
-          background: rgba(144, 213, 177, 0.15);
+          background: rgba(144, 213, 177, 0.2);
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
-          color: $text-light;
-          border-radius: 10px;
+          color: $text-primary-dark;
+          border-radius: $button-radius;
           cursor: pointer;
-          font-size: 1rem;
-          font-weight: 500;
-          font-family: 'Inter', sans-serif;
-          transition: all 0.3s $transition-smooth;
-          width: 100%;
+          font-size: $text-base;
+          font-weight: $font-medium;
+          font-family: $font-primary;
+          transition: all $transition-base;
 
           &:hover {
-            background: rgba(144, 213, 177, 0.3);
+            background: rgba(144, 213, 177, 0.35);
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(144, 213, 177, 0.2);
+          }
+
+          @include mobile {
+            font-size: $text-sm;
+            padding: $spacing-2 $spacing-3;
           }
         }
       }
@@ -127,19 +143,8 @@
   }
 
   @include mobile {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-
     .blog-card-content {
-      padding: 1.5rem;
-
-      .blog-card-title {
-        font-size: 1.3rem;
-      }
-
-      .blog-card-excerpt {
-        font-size: 0.95rem;
-      }
+      padding: $spacing-3;
     }
   }
 }

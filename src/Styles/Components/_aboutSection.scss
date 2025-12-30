@@ -1,64 +1,103 @@
+// ============================================
+// ABOUT SECTION - Liquid Glass Design
+// ============================================
+
 .about-section {
   width: 42%;
   height: 85%;
-  border-radius: 12px;
-  color: #595d64;
+  border-radius: $radius-lg;
+  color: $text-primary-dark;
+
   @include pad {
     width: 90%;
-    margin: 0 auto;
-    margin-bottom: 3rem;
+    margin: 0 auto $spacing-6;
   }
+
   h2 {
-    color: #90d5b1;
-    margin-bottom: 1.5rem;
+    color: $interactive-secondary;
+    margin-bottom: $spacing-3;
+    font-size: $text-3xl;
+    font-weight: $font-semibold;
+
+    @include pad {
+      font-size: $text-4xl;
+    }
+
+    @include mobile {
+      font-size: $text-2xl;
+    }
   }
+
   .about-info {
-    background-color: #f3f5f8;
-    border-radius: 12px;
+    @include glass-card($glass-bg-light);
+    background: $glass-bg-light;
+
     .about-details {
       display: flex;
+      font-size: $text-base;
+
       @include pad {
-        font-size: 1.8rem;
+        font-size: $text-lg;
       }
+
       @include mobile {
-        font-size: 0.8rem;
+        font-size: $text-sm;
       }
+
       .about-items {
-        margin-top: 0.5rem;
-        margin-left: 1.3rem;
+        margin-top: $spacing-1;
+        margin-left: $spacing-3;
         list-style: none;
-        font-weight: bold;
+        font-weight: $font-semibold;
         width: 40%;
         height: 80%;
+        color: $text-primary-light;
+
         .about-item {
-          padding: 0.8rem;
+          padding: $spacing-2;
         }
       }
+
       .info-items {
-        margin-top: 0.5rem;
+        margin-top: $spacing-1;
         list-style: none;
         height: 80%;
+        color: $text-secondary-light;
+
         .info-item {
-          padding: 0.8rem;
+          padding: $spacing-2;
         }
       }
     }
+
     .download-cv-btn {
       text-align: center;
       margin: 0 auto;
-      padding: 1.5rem;
+      padding: $spacing-3;
+
       button {
-        font-size: 1.3rem;
-        width: 340;
-        padding: 0.8rem;
-        background-color: #f3f5f8;
-        border-radius: 12px;
-        border-color: #90d5b1;
-        color: #90d5b1;
+        font-size: $text-xl;
+        font-weight: $font-medium;
+        font-family: $font-primary;
+        padding: $spacing-2 $spacing-5;
+        background: rgba(144, 213, 177, 0.15);
+        border-radius: $button-radius;
+        border: 1px solid $interactive-secondary;
+        color: $interactive-secondary;
+        cursor: pointer;
+        transition: all $transition-base;
+        box-shadow: $button-shadow;
+
         &:hover {
-          box-shadow: inset 10rem 0 #90d5b1;
-          color: #f3f5f8;
-          transition: 0.45s;
+          background: $interactive-secondary;
+          color: $text-primary-dark;
+          transform: translateY(-2px);
+          box-shadow: $button-shadow-hover;
+        }
+
+        @include mobile {
+          font-size: $text-base;
+          padding: $spacing-2 $spacing-3;
         }
       }
     }

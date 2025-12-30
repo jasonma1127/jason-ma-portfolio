@@ -1,19 +1,35 @@
+// ============================================
+// SKILLS SECTION - Liquid Glass Design
+// ============================================
+
 .skills-section {
   width: 42%;
   height: 85%;
+
   @include pad {
     width: 90%;
-    margin: 0 auto;
-    margin-bottom: 3rem;
+    margin: 0 auto $spacing-6;
   }
+
   h2 {
-    color: #90d5b1;
-    margin-bottom: 1.5rem;
+    color: $interactive-secondary;
+    margin-bottom: $spacing-3;
+    font-size: $text-3xl;
+    font-weight: $font-semibold;
+
+    @include pad {
+      font-size: $text-4xl;
+    }
+
+    @include mobile {
+      font-size: $text-2xl;
+    }
   }
+
   .progress-bars {
-    background-color: #f3f5f8;
-    padding: 1.3rem;
-    border-radius: 12px;
-    color: #595d64;
+    @include glass-card($glass-bg-light);
+    background: $glass-bg-light;
+    padding: $spacing-3;
+    color: $text-primary-light;
   }
 }

@@ -1,26 +1,23 @@
+// ============================================
+// PORTFOLIO CARD - Liquid Glass Design
+// ============================================
+
 .portfolios-card {
-  background: $glass-bg-dark;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid $glass-border;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: $glass-shadow;
-  transition: all 0.4s $transition-smooth;
+  @include glass-card($card-bg-dark);
   display: flex;
   flex-direction: column;
   height: 100%;
-  will-change: transform;
+  overflow: hidden;
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: $glass-shadow-hover;
-    border-color: rgba(137, 172, 210, 0.3);
+    transform: translateY(-4px);
+    box-shadow: $card-shadow-hover, $glass-inset-highlight;
+    border-color: $glass-border-dark;
   }
 
   &.featured {
     border: 2px solid rgba(144, 213, 177, 0.5);
-    box-shadow: 0 8px 32px rgba(144, 213, 177, 0.15);
+    box-shadow: $card-shadow, 0 0 24px rgba(144, 213, 177, 0.15);
   }
 
   .portfolios-image {
@@ -32,7 +29,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.4s $transition-smooth;
+      transition: transform $transition-base;
     }
 
     &:hover img {
@@ -41,46 +38,73 @@
   }
 
   .portfolios-content {
-    padding: 2rem;
+    padding: $card-padding;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    gap: $spacing-2;
 
     .portfolios-title {
-      color: $accent-blue;
-      margin-bottom: 1rem;
-      font-size: 1.8rem;
-      font-weight: 600;
+      color: $interactive-primary;
+      font-size: $text-2xl;
+      font-weight: $font-semibold;
+      line-height: $leading-tight;
+
+      @include pad {
+        font-size: $text-3xl;
+      }
+
+      @include mobile {
+        font-size: $text-xl;
+      }
     }
 
     .portfolios-description {
-      color: $text-muted;
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
+      color: $text-secondary-dark;
+      font-size: $text-base;
+      line-height: $leading-relaxed;
       flex-grow: 1;
+
+      @include pad {
+        font-size: $text-lg;
+      }
+
+      @include mobile {
+        font-size: $text-sm;
+      }
     }
 
     .portfolios-tech {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: auto;
+      gap: $spacing-1;
+      margin-top: $spacing-2;
 
       .tech-tag {
         background: rgba(137, 172, 210, 0.25);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(137, 172, 210, 0.3);
-        color: $text-light;
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 500;
-        transition: all 0.3s $transition-smooth;
+        border: 1px solid rgba(137, 172, 210, 0.4);
+        color: $text-primary-dark;
+        padding: $spacing-1;
+        border-radius: $radius-full;
+        font-size: $text-sm;
+        font-weight: $font-medium;
+        transition: all $transition-fast;
 
         &:hover {
           background: rgba(137, 172, 210, 0.4);
           transform: translateY(-2px);
+        }
+
+        @include pad {
+          font-size: $text-base;
+          padding: $spacing-1 $spacing-2;
+        }
+
+        @include mobile {
+          font-size: $text-xs;
+          padding: 6px $spacing-1;
         }
       }
     }
@@ -88,91 +112,51 @@
 
   .portfolios-links {
     display: flex;
-    gap: 1rem;
-    padding: 1.5rem 2rem;
-    border-top: 1px solid rgba(137, 172, 210, 0.15);
+    gap: $spacing-2;
+    padding: $spacing-3 $card-padding;
+    border-top: 1px solid $border-dark;
     flex-wrap: wrap;
 
     .portfolio-link {
-      padding: 0.7rem 1.4rem;
-      background: rgba(144, 213, 177, 0.15);
+      padding: $spacing-1 $spacing-3;
+      background: rgba(144, 213, 177, 0.2);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(144, 213, 177, 0.3);
-      color: $text-light;
+      border: 1px solid rgba(144, 213, 177, 0.4);
+      color: $text-primary-dark;
       text-decoration: none;
-      border-radius: 8px;
-      transition: all 0.3s $transition-smooth;
-      font-size: 0.95rem;
-      font-weight: 500;
+      border-radius: $radius-sm;
+      transition: all $transition-base;
+      font-size: $text-base;
+      font-weight: $font-medium;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: $spacing-1;
 
       &:hover {
-        background: rgba(144, 213, 177, 0.3);
+        background: rgba(144, 213, 177, 0.35);
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(144, 213, 177, 0.2);
       }
-    }
-  }
 
-  @include pad {
-    .portfolios-content {
-      padding: 2rem 1.5rem;
-
-      .portfolios-title {
-        font-size: 2.2rem;
+      @include pad {
+        font-size: $text-lg;
+        padding: $spacing-2 $spacing-3;
       }
 
-      .portfolios-description {
-        font-size: 1.6rem;
-      }
-
-      .tech-tag {
-        font-size: 1.1rem;
-        padding: 0.6rem 1.1rem;
-      }
-    }
-
-    .portfolios-links {
-      .portfolio-link {
-        font-size: 1.4rem;
-        padding: 0.9rem 1.6rem;
+      @include mobile {
+        font-size: $text-sm;
+        padding: $spacing-1 $spacing-2;
+        flex: 1;
+        justify-content: center;
       }
     }
   }
 
   @include mobile {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-
-    .portfolios-content {
-      padding: 1.5rem;
-
-      .portfolios-title {
-        font-size: 1.4rem;
-      }
-
-      .portfolios-description {
-        font-size: 0.95rem;
-      }
-
-      .tech-tag {
-        font-size: 0.75rem;
-        padding: 0.4rem 0.8rem;
-      }
-    }
-
     .portfolios-links {
       flex-direction: column;
-      padding: 1rem 1.5rem;
-
-      .portfolio-link {
-        text-align: center;
-        justify-content: center;
-        font-size: 0.9rem;
-      }
+      padding: $spacing-2 $card-padding;
     }
   }
 }

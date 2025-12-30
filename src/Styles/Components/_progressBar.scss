@@ -1,28 +1,79 @@
+// ============================================
+// PROGRESS BAR - Liquid Glass Design
+// ============================================
+
 .progress-bar {
-  margin-bottom: 0.3rem;
-  padding: 0 1rem;
+  margin-bottom: $spacing-1;
+  padding: 0 $spacing-2;
+
   .progress-bar-title {
-    font-size: 1.3rem;
-    font-weight: bold;
+    font-size: $text-lg;
+    font-weight: $font-semibold;
+    color: $text-primary-light;
+    margin-bottom: $spacing-1;
+
+    @include mobile {
+      font-size: $text-base;
+    }
   }
+
   .progress-bar-detail {
     display: flex;
+    align-items: center;
+    gap: $spacing-4;
+
     p {
-      color: #89acd2;
-    }
-    .bar {
-      margin: auto;
-      margin-left: 2rem;
-      background-color: #dadada;
-      border-radius: 12px;
-      width: 100%;
-      .bar-percent{
-        background: #89acd2;
-        border-radius: 12px;
-        width: 10%;
-        padding: 0.5rem;
-        transition: 2s;
+      color: $interactive-primary;
+      font-size: $text-base;
+      font-weight: $font-medium;
+      min-width: 40px;
+
+      @include mobile {
+        font-size: $text-sm;
+        min-width: 35px;
       }
     }
+
+    .bar {
+      flex: 1;
+      background: rgba(218, 218, 218, 0.3);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(137, 172, 210, 0.2);
+      border-radius: $radius-full;
+      height: $spacing-2;
+      overflow: hidden;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      .bar-percent {
+        background: linear-gradient(90deg, $interactive-primary, lighten($interactive-primary, 10%));
+        border-radius: $radius-full;
+        height: 100%;
+        width: 10%;
+        transition: width 2s $transition-slow;
+        box-shadow: 0 0 8px rgba(137, 172, 210, 0.4);
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+          animation: shimmer 2s infinite;
+        }
+      }
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }

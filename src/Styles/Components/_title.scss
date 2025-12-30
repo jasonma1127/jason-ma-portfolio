@@ -1,50 +1,66 @@
+// ============================================
+// TITLE COMPONENT - Liquid Glass Design
+// ============================================
+
 .title {
   text-transform: uppercase;
-  font-size: 3rem;
-  font-weight: 600;
+  font-size: $text-5xl;
+  font-weight: $font-semibold;
   position: relative;
   letter-spacing: 1.5px;
+
+  @include pad {
+    font-size: $text-4xl;
+  }
+
   @include mobile {
-    font-size: 2rem;
+    font-size: $text-3xl;
     letter-spacing: 1px;
   }
+
   span {
     position: absolute;
     top: 15%;
     left: 0;
     font-size: 8rem;
-    font-weight: 700;
+    font-weight: $font-bold;
     opacity: 0.07;
+
     @include mobile {
       font-size: 5rem;
     }
   }
 }
 
+// Page-specific title styles
 .title.about {
-  color: $text-light;
+  color: $text-primary-dark;
+
   span {
-    color: $text-light;
+    color: $text-primary-dark;
   }
 }
 
 .title.portfolios {
-  color: $text-dark;
+  color: $text-primary-dark;
+
   span {
-    color: $text-dark;
+    color: $text-primary-dark;
   }
 }
 
 .title.contact {
-  color: $text-light;
+  color: $text-primary-dark;
+
   span {
-    color: $text-light;
+    color: $text-primary-dark;
   }
 }
 
 .title.blog {
-  color: $text-dark;
+  color: $text-primary-dark;
+
   span {
-    color: $text-dark;
+    color: $text-primary-dark;
   }
 }
