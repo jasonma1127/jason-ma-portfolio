@@ -12,12 +12,24 @@ function AboutPage() {
   useEffect(() => {
     // Scroll to contact section if hash is present
     if (location.hash === '#contact') {
-      setTimeout(() => {
+      // Wait for all content to load, then scroll
+      const scrollToContact = () => {
         const element = document.getElementById('contact');
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Scroll with offset to account for nav bar
+          const yOffset = -80; // Adjust based on your nav height
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
         }
-      }, 100);
+      };
+
+      // Try multiple times to ensure content is loaded
+      setTimeout(scrollToContact, 300);
+      setTimeout(scrollToContact, 600);
+      setTimeout(scrollToContact, 1000);
+    } else {
+      // Scroll to top if no hash
+      window.scrollTo({ top: 0, behavior: 'auto' });
     }
   }, [location]);
 
