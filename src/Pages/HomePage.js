@@ -44,7 +44,7 @@ function HomePage() {
       <div className={`home-bar ${movement}`}></div>
       <div className={`home-title ${movement}`}>
         Jason Ma
-        <p>Web Developer X Programmer</p>
+        <p>Software Engineer</p>
       </div>
       <div className={`home-contact-btn ${movement}`}>
         <Link to="/about#contact">
