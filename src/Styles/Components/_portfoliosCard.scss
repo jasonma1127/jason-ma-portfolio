@@ -22,13 +22,17 @@
 
   .portfolios-image {
     width: 100%;
-    height: 200px;
+    height: 300px;
     overflow: hidden;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       transition: transform $transition-base;
     }
 

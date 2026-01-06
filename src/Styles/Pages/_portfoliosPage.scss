@@ -74,6 +74,15 @@
 
     .portfolios-grid {
       @include grid-auto-fit;
+      max-width: 1200px;
+      margin: 0 auto;
+      justify-items: center;
+
+      // Limit card width when there are few projects
+      .portfolios-card {
+        max-width: 800px;
+        width: 100%;
+      }
     }
   }
 }
