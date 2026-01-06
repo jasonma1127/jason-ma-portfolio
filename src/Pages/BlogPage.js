@@ -4,6 +4,7 @@ import Title from "../Components/Title";
 
 function BlogPage() {
   const [posts, setPosts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState("all");
@@ -20,6 +21,18 @@ function BlogPage() {
       );
       const data = await response.json();
       setPosts(data.posts || []);
+
+      // Extract unique categories from all posts
+      const allCategories = new Map();
+      (data.posts || []).forEach(post => {
+        Object.values(post.categories || {}).forEach(cat => {
+          if (!allCategories.has(cat.name)) {
+            allCategories.set(cat.name, cat);
+          }
+        });
+      });
+
+      setCategories(Array.from(allCategories.values()));
       setLoading(false);
     } catch (err) {
       setError("Unable to load posts. Please try again later.");
@@ -30,10 +43,10 @@ function BlogPage() {
 
   const getFilteredPosts = () => {
     if (filter === "all") return posts;
-    // Filter by category - WordPress API provides category information
+    // Filter by category name
     return posts.filter((post) => {
-      const categories = Object.values(post.categories || {});
-      return categories.some((cat) => cat.slug === filter);
+      const postCategories = Object.values(post.categories || {});
+      return postCategories.some((cat) => cat.name === filter);
     });
   };
 
@@ -50,18 +63,14 @@ function BlogPage() {
           >
             All Posts
           </button>
-          <button
-            className={filter === "tech" ? "active" : ""}
-            onClick={() => setFilter("tech")}
-          >
-            Tech Articles
-          </button>
-          <button
-            className={filter === "life" ? "active" : ""}
-            onClick={() => setFilter("life")}
-          >
-            Life & Thoughts
-          </button>
+          {categories.map((category) => (
+            <button
+              key={category.name}
+              className={filter === category.name ? "active" : ""}
+              onClick={() => setFilter(category.name)}
+              dangerouslySetInnerHTML={{ __html: category.name }}
+            />
+          ))}
         </div>
 
         {loading && (
