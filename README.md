@@ -4,166 +4,75 @@ Personal portfolio website built with React, showcasing technical skills, projec
 
 🌐 **Live Site**: [https://jason-ma-portfolio.vercel.app](https://jason-ma-portfolio.vercel.app)
 
-🎨 **Design System**: Apple Liquid Glass Design (2025) with comprehensive design tokens architecture.
+## Features
+
+- **Modern Stack**: React 19 + React Router 7 + SCSS
+- **Design System**: Apple Liquid Glass with three-tier design tokens architecture
+- **Auto-Sync**: Portfolio projects automatically synced from GitHub repos
+- **Blog Integration**: WordPress REST API with dynamic categories
+- **GitHub Stats**: Live statistics and language breakdown from GitHub API
+- **Responsive**: Mobile-first design with glassmorphism effects
 
 ## Quick Start
 
 ```bash
+# Install dependencies
 npm install
-npm start        # Development server at http://localhost:3000
-npm run build    # Production build
-```
 
-## Deployment
+# Development server
+npm start        # http://localhost:3000
 
-**Vercel** (Production - Automatic CI/CD)
-- Live at: [https://jason-ma-portfolio.vercel.app](https://jason-ma-portfolio.vercel.app)
-- Push to GitHub triggers automatic deployment
-- Configure at [vercel.com](https://vercel.com)
+# Production build
+npm run build
 
-**GitHub Pages** (Alternative)
-```bash
-npm run deploy   # Manual deployment to gh-pages
+# Deploy to GitHub Pages
+npm run deploy
 ```
 
 ## Tech Stack
 
-- **Frontend**: React 19.2.3 + React Router 7
-- **Styling**: SCSS with Design Tokens system
-- **Design**: Apple Liquid Glass (glassmorphism effects)
+- **Frontend**: React 19.2.3, React Router 7
+- **Styling**: SCSS with Design Tokens
+- **APIs**: WordPress REST API, GitHub REST API
+- **Deployment**: Vercel (auto-deploy on push)
 - **Icons**: FontAwesome 7
-- **Blog**: WordPress REST API integration
-- **CI/CD**: Vercel automatic deployment
 
 ## Project Structure
 
 ```
 src/
-├── Components/          # Reusable UI components
-│   ├── NavigationBar.js
-│   ├── AboutSection.js
-│   ├── ContactSection.js
-│   ├── GitHubStats.js
-│   ├── SkillsSection.js
-│   ├── ProgressBar.js
-│   ├── PortfoliosCard.js
-│   ├── BlogCard.js
-│   ├── ErrorBoundary.js
-│   └── Title.js
-├── Pages/              # Page components
-│   ├── HomePage.js         # Landing page with image animations
-│   ├── AboutPage.js        # About + GitHub Stats + Skills + Contact
-│   ├── PortfoliosPage.js
-│   ├── BlogPage.js
-│   └── NotFoundPage.js     # 404 error page
-├── Styles/             # SCSS with Design Tokens
-│   ├── design-tokens.scss      # Primitive & semantic tokens
-│   ├── component-tokens.scss   # Component-specific tokens
-│   ├── mixins.scss            # Reusable mixins
-│   ├── Components/            # Component styles
-│   └── Pages/                 # Page styles
-├── data/               # Static data
-│   ├── portfoliosData.js
-│   └── githubApi.js    # GitHub API integration
-└── image/              # Image assets
+├── Components/         # Reusable UI components
+├── Pages/             # Page components
+├── Styles/            # SCSS with design tokens
+├── data/              # Static data & API integration
+├── services/          # API services (GitHub)
+└── image/             # Image assets
 ```
-
-## Design System
-
-This project uses a **three-tier design tokens architecture**:
-
-1. **Primitive Tokens** - Base colors, never used directly
-2. **Semantic Tokens** - Purpose-based (e.g., `$text-primary-dark`)
-3. **Component Tokens** - Component-specific (e.g., `$home-img-height`)
-
-Benefits:
-- ✅ No hardcoded values
-- ✅ Easy theming and maintenance
-- ✅ Consistent visual language
-- ✅ Single source of truth
 
 ## Configuration
 
-**WordPress Blog**: Update API URL in `src/Pages/BlogPage.js`
+### WordPress Blog
+Update API URL in `src/Pages/BlogPage.js`:
 ```javascript
 const API_URL = 'https://your-blog.wordpress.com/wp-json/wp/v2/posts';
 ```
-*Note: Categories are automatically fetched from WordPress. Create categories in WordPress admin and they will appear on the site automatically.*
 
-**GitHub Stats**: Update username in `src/data/githubApi.js`
+### GitHub Username
+Update username in `src/services/githubApi.js`:
 ```javascript
 const GITHUB_USERNAME = 'your-username';
 ```
 
-**Google Analytics**: Uncomment and add your tracking ID in `public/index.html`
-
-## Portfolio Projects
-
-This site **automatically syncs portfolio projects from GitHub repositories** at build time.
-
-### How to add a new project:
-
-1. **Tag your GitHub repo** with topic `portfolio-display`
-   - Go to your repo on GitHub
-   - Click ⚙️ Settings → About section → Add topics
-   - Add `portfolio-display` (required to show on site)
-   - Add `portfolio-featured` (optional, to feature the project)
-   - Add tech tags like `react`, `python`, `scss`, etc.
-
-2. **Set homepage URL** (optional)
-   - Settings → About → Website
-   - Add your live demo URL (becomes "Live Demo" link)
-
-3. **Create `.github/portfolio.json`** (optional, for advanced customization)
-   ```json
-   {
-     "image": "https://raw.githubusercontent.com/you/repo/main/screenshot.png",
-     "blogPostUrl": "https://your-blog.com/post",
-     "customDescription": "Custom description (overrides GitHub description)"
-   }
-   ```
-
-4. **Redeploy** this portfolio site
-   - Push any change to GitHub, or
-   - Trigger manual redeploy in Vercel dashboard
-
-### How it works:
-
-- **Build time**: Script fetches repos with `portfolio-display` topic from GitHub
-- **Merge data**: Combines GitHub data with custom metadata from `.github/portfolio.json`
-- **Generate static file**: Creates `public/portfolios-data.json` for fast loading
-- **Fallback**: If GitHub API fails, site uses static data from `src/data/portfoliosData.js`
-
-### Manual data refresh (development):
-
-```bash
-npm run fetch-portfolios  # Manually fetch GitHub data
-npm start                 # View updated projects
-```
-
-### Project data source priority:
-
-1. **Auto-synced** (recommended): GitHub API + `.github/portfolio.json`
-2. **Manual fallback**: `src/data/portfoliosData.js` (if API unavailable)
+### Portfolio Projects
+Add GitHub topic `portfolio-display` to your repos to automatically include them. See [SPEC.md](SPEC.md) for detailed configuration.
 
 ## Documentation
 
-- [SPEC.md](SPEC.md) - Complete technical specification
+- **[SPEC.md](SPEC.md)** - Complete technical specification and development guide
 
-## Recent Updates (2025-12-30)
+## License
 
-**Version 1.2.0 - Major Feature Update**
-- ✅ Removed Contact page, integrated ContactSection into About page
-- ✅ Added GitHub API integration for live statistics
-- ✅ Added 404 Not Found page with animations
-- ✅ Added Error Boundary for crash protection
-- ✅ Comprehensive SEO optimization (meta tags, Open Graph, Twitter Cards)
-- ✅ Fixed favicon display issues on Vercel deployment
-- ✅ Privacy improvements (removed phone number from public display)
-- ✅ Fixed home page animation to trigger on every visit
-- ✅ Resolved bottom white space issue with flexbox layout
-- ✅ Refactored styles to use design tokens (69% code reduction)
-- ✅ Added brand colors and icon animation mixins
+MIT License - feel free to use this as a template for your own portfolio!
 
 ---
 
