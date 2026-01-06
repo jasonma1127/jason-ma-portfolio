@@ -38,9 +38,11 @@ function BlogCard({ post }) {
           {getCategories().length > 0 && (
             <div className="blog-categories">
               {getCategories().map((cat, index) => (
-                <span key={index} className="blog-category">
-                  {cat}
-                </span>
+                <span
+                  key={index}
+                  className="blog-category"
+                  dangerouslySetInnerHTML={{ __html: cat }}
+                />
               ))}
             </div>
           )}
