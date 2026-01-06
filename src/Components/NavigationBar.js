@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -10,9 +10,9 @@ function NavigationBar(props) {
 
   return (
     <div className={`navigation-bar ${props.page}`}>
-      <div className="logo">
-        <h1>JASON MA</h1>
-      </div>
+      <Link to="/" className="logo">
+        <img src="/logo.png" alt="Jason Ma" className="logo-image" />
+      </Link>
       <div className="nav-btn">
         <ul className={click? "nav-items active" : "nav-items"}>
           <li className="nav-item" onClick={clickHandler}>

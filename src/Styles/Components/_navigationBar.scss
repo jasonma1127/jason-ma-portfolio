@@ -11,25 +11,42 @@
 
   .logo {
     margin-left: $nav-padding-x;
-    font-size: $text-2xl;
-    font-weight: $font-semibold;
-    white-space: nowrap;
     z-index: $z-popover;
     position: relative;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    .logo-image {
+      height: 48px;
+      width: auto;
+      transition: transform $transition-base, opacity $transition-base;
+
+      &:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+    }
 
     @include pad {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
       margin-left: 0;
-      font-size: $text-lg;
+
+      .logo-image {
+        height: 40px;
+      }
     }
 
     @include mobile {
       position: static;
-      font-size: $text-xs;
       margin-left: $spacing-2;
       transform: none;
+
+      .logo-image {
+        height: 32px;
+      }
     }
   }
 
@@ -126,10 +143,6 @@
   background: $nav-bg-dark;
   border-bottom: 1px solid $border-dark;
 
-  h1 {
-    color: $text-primary-dark !important;
-  }
-
   a {
     color: $text-primary-dark !important;
   }
@@ -140,10 +153,6 @@
   @include glass-nav;
   background: $nav-bg-dark;
   border-bottom: 1px solid $border-dark;
-
-  h1 {
-    color: $text-primary-dark !important;
-  }
 
   a {
     color: $text-primary-dark !important;
@@ -156,10 +165,6 @@
   background: $nav-bg-dark;
   border-bottom: 1px solid $border-dark;
 
-  h1 {
-    color: $text-primary-dark !important;
-  }
-
   a {
     color: $text-primary-dark !important;
   }
@@ -170,10 +175,6 @@
   @include glass-nav;
   background: $nav-bg-dark;
   border-bottom: 1px solid $border-dark;
-
-  h1 {
-    color: $text-primary-dark !important;
-  }
 
   a {
     color: $text-primary-dark !important;
