@@ -1,10 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PortfoliosCard from "../Components/PortfoliosCard";
 import Title from "../Components/Title";
-import portfoliosData from "../data/portfoliosData";
+import portfoliosDataFallback from "../data/portfoliosData";
 
 function PortfoliosPage() {
+  const [portfoliosData, setPortfoliosData] = useState(portfoliosDataFallback);
   const [filter, setFilter] = useState("all");
+
+  useEffect(() => {
+    // Try to load generated data from build-time fetch
+    fetch('/portfolios-data.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Generated data not found');
+        return res.json();
+      })
+      .then(data => {
+        if (data && data.length > 0) {
+          setPortfoliosData(data);
+          console.log('✅ Loaded portfolio data from GitHub API');
+        }
+      })
+      .catch(err => {
+        console.warn('⚠️  Using fallback portfolio data:', err.message);
+        // Already using fallback from useState
+      });
+  }, []);
 
   const getFilteredProjects = () => {
     if (filter === "all") return portfoliosData;

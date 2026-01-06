@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Portfolio data (generated at build time)
+public/portfolios-data.json

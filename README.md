@@ -95,9 +95,56 @@ const API_URL = 'https://your-blog.wordpress.com/wp-json/wp/v2/posts';
 const GITHUB_USERNAME = 'your-username';
 ```
 
-**Portfolio Projects**: Edit `src/data/portfoliosData.js`
-
 **Google Analytics**: Uncomment and add your tracking ID in `public/index.html`
+
+## Portfolio Projects
+
+This site **automatically syncs portfolio projects from GitHub repositories** at build time.
+
+### How to add a new project:
+
+1. **Tag your GitHub repo** with topic `portfolio-display`
+   - Go to your repo on GitHub
+   - Click ⚙️ Settings → About section → Add topics
+   - Add `portfolio-display` (required to show on site)
+   - Add `portfolio-featured` (optional, to feature the project)
+   - Add tech tags like `react`, `python`, `scss`, etc.
+
+2. **Set homepage URL** (optional)
+   - Settings → About → Website
+   - Add your live demo URL (becomes "Live Demo" link)
+
+3. **Create `.github/portfolio.json`** (optional, for advanced customization)
+   ```json
+   {
+     "image": "https://raw.githubusercontent.com/you/repo/main/screenshot.png",
+     "blogPostUrl": "https://your-blog.com/post",
+     "customDescription": "Custom description (overrides GitHub description)"
+   }
+   ```
+
+4. **Redeploy** this portfolio site
+   - Push any change to GitHub, or
+   - Trigger manual redeploy in Vercel dashboard
+
+### How it works:
+
+- **Build time**: Script fetches repos with `portfolio-display` topic from GitHub
+- **Merge data**: Combines GitHub data with custom metadata from `.github/portfolio.json`
+- **Generate static file**: Creates `public/portfolios-data.json` for fast loading
+- **Fallback**: If GitHub API fails, site uses static data from `src/data/portfoliosData.js`
+
+### Manual data refresh (development):
+
+```bash
+npm run fetch-portfolios  # Manually fetch GitHub data
+npm start                 # View updated projects
+```
+
+### Project data source priority:
+
+1. **Auto-synced** (recommended): GitHub API + `.github/portfolio.json`
+2. **Manual fallback**: `src/data/portfoliosData.js` (if API unavailable)
 
 ## Documentation
 
