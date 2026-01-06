@@ -88,6 +88,7 @@ Benefits:
 ```javascript
 const API_URL = 'https://your-blog.wordpress.com/wp-json/wp/v2/posts';
 ```
+*Note: Categories are automatically fetched from WordPress. Create categories in WordPress admin and they will appear on the site automatically.*
 
 **GitHub Stats**: Update username in `src/data/githubApi.js`
 ```javascript

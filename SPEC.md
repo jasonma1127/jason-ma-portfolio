@@ -327,7 +327,10 @@ This ensures animation plays on every visit, not just page refresh
 
 **Features**:
 - Fetch posts from WordPress REST API
-- Filter by category (All, Tech, Life)
+- **Dynamic category filtering** - Auto-fetch categories from WordPress
+- Filter buttons generated automatically based on available categories
+- Supports any language categories (Chinese, English, etc.)
+- HTML entity decoding for category names
 - Loading state
 - Error handling
 - Responsive grid layout
@@ -338,9 +341,10 @@ This ensures animation plays on every visit, not just page refresh
 ```javascript
 {
   posts: Array<WordPressPost>,
+  categories: Array<Category>,  // Dynamically fetched from posts
   loading: boolean,
   error: string | null,
-  filter: string // "all" | "tech" | "life"
+  filter: string // "all" | <category_name>
 }
 ```
 
